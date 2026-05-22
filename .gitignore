@@ -1,0 +1,17 @@
+
+.DS_Store
+
+node_modules/
+
+dist/
+
+tmp/
+
+outputs/
+
+*.log
+
+.env
+
+.env.*
+
