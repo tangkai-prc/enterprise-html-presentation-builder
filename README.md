@@ -18,6 +18,24 @@ Build a reusable Codex workflow for creating enterprise-style browser presentati
 - Start with skill instructions, references, assets, and tests.
 - Add automation scripts only after the workflow is stable.
 
+## Current workspace layout
+
+The repository has two separate layers:
+
+```text
+.agents/skills/enterprise-html-presentation-builder/
+  Reusable skill source, references, assets, and tests.
+
+inputs/<project-id>/
+  Project inputs and development context, including templates, user materials,
+  analysis, prototype references, previews, and baselines.
+
+outputs/<project-id>/
+  Final generated HTML presentation outputs.
+```
+
+Use `inputs/<project-id>/` for real enterprise project materials. Keep `.agents/skills/` limited to reusable, generic skill logic. Use `outputs/<project-id>/` only for final user-facing HTML presentation artifacts.
+
 
 ## Skill folder tree
 

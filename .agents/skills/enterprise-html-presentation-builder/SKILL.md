@@ -79,6 +79,7 @@ npm install reveal.js vite
    - Define layout taxonomy.
    - Define asset sourcing and placement rules.
    - Generate a controlled single-file HTML prototype.
+   - Generate a user-facing presentation from project input.
    - Add an interactive demo page.
 
 2. Determine the available inputs:
@@ -131,7 +132,17 @@ npm install reveal.js vite
    - Fullscreen support.
    - 16:9 slide canvas.
 
-7. For interactive demo slides, keep the first version simple:
+7. For user-facing presentation generation, separate the application layer from prototype work:
+   - Read project inputs from `inputs/<project-id>/`.
+   - Use `inputs/<project-id>/materials/brief.md` as the primary user input when present.
+   - Use `inputs/<project-id>/template/` for user-provided PPTX templates and visual references.
+   - Use `inputs/<project-id>/analysis.md` as the project analysis record.
+   - Use analyzed template rules and prototype layouts as reusable references.
+   - Write generated presentation HTML to `outputs/<project-id>/`.
+   - Do not write user-facing presentation HTML to `inputs/<project-id>/development/prototype/`.
+   - Do not overwrite template prototype files.
+
+8. For interactive demo slides, keep the first version simple:
    - Offline operation.
    - Static embedded data.
    - Visible controls.
@@ -139,7 +150,7 @@ npm install reveal.js vite
    - Fallback explanation text.
    - No external APIs by default.
 
-8. After every meaningful improvement, recommend updating the relevant bundled resource:
+9. After every meaningful improvement, recommend updating the relevant bundled resource:
    - `references/` for rules and analysis methods.
    - `assets/` for reusable templates.
    - `tests/` for prompts and acceptance criteria.
@@ -152,14 +163,17 @@ Use bundled resources only when relevant to the user's request.
 - Use `references/ppt-template-analysis-checklist.md` when analyzing an enterprise PPT template or extracting style and layout rules.
 - Use `references/layout-taxonomy.md` when classifying slide types or choosing HTML slide layouts.
 - Use `references/single-file-html-rules.md` when the target output is a single-file HTML browser presentation.
+- Use `references/application-layer-rules.md` when the task involves user project inputs, generated presentation outputs, or deciding where generated HTML should be written.
 - Use `references/asset-sourcing-rules.md` when deciding where logos, images, icons, backgrounds, charts, maps, or screenshots should come from.
 - Use `references/asset-placement-rules.md` when deciding where assets should be placed on cover, agenda, section, content, data, image-text, interactive, or closing slides.
 - Use `assets/brief-template.md` when the user has not provided enough project, audience, delivery, or source-material information.
+- Use `assets/project-brief-template.md` when creating a minimal user input file for a generated presentation.
 - Use `assets/style-token-template.md` when documenting enterprise colors, fonts, logo rules, spacing, headers, footers, decoration, or component style variables.
 - Use `assets/html-slide-template.md` when generating or modifying reusable HTML slide structures.
 - Use `assets/asset-inventory-template.md` when documenting required assets, placeholders, permissions, confidentiality risks, or single-file embedding decisions.
 - Use `tests/template-analysis-request.md` when testing the template-analysis behavior.
 - Use `tests/asset-rules-request.md` when testing the asset-sourcing and placement behavior.
+- Use `tests/cover-title-long-en-request.md` when testing long English cover-title typography, wrapping, and local HTML review behavior.
 
 Do not assume that references and assets are already loaded. Open and inspect the relevant bundled resource when the task depends on its detailed rules.
 

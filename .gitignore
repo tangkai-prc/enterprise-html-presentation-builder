@@ -9,9 +9,12 @@ tmp/
 
 outputs/
 
+input/
+
+inputs/
+
 *.log
 
 .env
 
 .env.*
-

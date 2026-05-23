@@ -291,6 +291,10 @@ Rules:
 - Do not place decoration directly behind dense body text unless opacity is low.
 - Use the same decorative language across slide types.
 - Prefer CSS/SVG for MVP.
+- When rebuilding PowerPoint decorative images from PPTX XML, respect the source picture geometry and crop data:
+  - If the picture has no `srcRect`, stretch it to the exact XML box with `background-size: 100% 100%` or an `<img>` sized to the box.
+  - Use `cover` only when the PPTX explicitly crops the image or when visual cropping is acceptable.
+  - Corporate wave, gradient, and ribbon backgrounds often depend on this exact non-proportional PowerPoint scaling.
 
 ## Image placement
 
