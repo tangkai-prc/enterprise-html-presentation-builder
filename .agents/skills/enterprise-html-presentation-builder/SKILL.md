@@ -130,6 +130,7 @@ npm install reveal.js vite
    - Clear placeholders for missing assets.
    - Keyboard navigation.
    - Fullscreen support.
+   - Semantic in-deck links for agenda, chapter, and subtitle navigation.
    - 16:9 slide canvas.
 
 7. For user-facing presentation generation, separate the application layer from prototype work:
@@ -142,7 +143,18 @@ npm install reveal.js vite
    - Do not write user-facing presentation HTML to `inputs/<project-id>/development/prototype/`.
    - Do not overwrite template prototype files.
 
-8. For interactive demo slides, keep the first version simple:
+8. For agenda and subtitle navigation in a single-file HTML deck:
+   - Use semantic anchors rather than page-scroll-only links.
+   - Chapter links should target `#chapter-<chapter-number>`.
+   - The first content slide of a chapter should carry `id="chapter-<chapter-number>"` and `data-chapter="<chapter-number>"`.
+   - Subtitle links should target `#chapter-<chapter-number>-subtitle-<subtitle-number>`.
+   - Subtitle content slides should carry `id="chapter-<chapter-number>-subtitle-<subtitle-number>"`, `data-chapter="<chapter-number>"`, and `data-active-subtitle-index="<subtitle-number>"`.
+   - The deck controller should intercept agenda and subtitle clicks, update the current slide index, and avoid native document scrolling or page reload.
+   - Agenda number and title links for the same chapter should highlight as one interaction group.
+   - Subtitle tabs should default to subtitle 1 and update the active tab from `data-active-subtitle-index`, explicit metadata, or the current hash.
+   - Prototype-only fallback routes may jump to template preview slides, but final project output should generate real semantic target slides.
+
+9. For interactive demo slides, keep the first version simple:
    - Offline operation.
    - Static embedded data.
    - Visible controls.
@@ -150,7 +162,7 @@ npm install reveal.js vite
    - Fallback explanation text.
    - No external APIs by default.
 
-9. After every meaningful improvement, recommend updating the relevant bundled resource:
+10. After every meaningful improvement, recommend updating the relevant bundled resource:
    - `references/` for rules and analysis methods.
    - `assets/` for reusable templates.
    - `tests/` for prompts and acceptance criteria.
