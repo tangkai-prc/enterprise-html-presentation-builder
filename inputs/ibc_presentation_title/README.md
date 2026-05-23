@@ -63,7 +63,12 @@ Current library contents:
 - Cover page.
 - Chinese agenda templates for 2, 3, 4, and 5 chapters.
 - English agenda templates for 2, 3, 4, and 5 chapters.
-- One body-page sample based on `slideLayout5.xml` / `3_标题和内容`.
+- One no-subtitle body-page sample based on `slideLayout14.xml` / `3_小节`.
+- Seven subtitle body-page samples for 3, 4, 5, 6, 7, 8, and 9 subtitle tabs based on `slideLayout16.xml` / `10_小节`.
 - Closing page.
+- Browser controls with fullscreen, previous/next, slide counter, and a larger semi-transparent left-side slide preview navigator that supports mouse-hover slide switching outside fullscreen mode. The preview navigator can be collapsed with a small top-left toggle.
+- Agenda chapter numbers and chapter titles are clickable links. Number and title links for the same chapter highlight as one group, and generated chapter content should use anchors such as `#chapter-1`, `#chapter-2`, and so on.
+- Subtitle tabs default to subtitle 1 and support hover/focus/click active-state switching during HTML review. Subtitle 1.2 through 1.9 route automatically to the smallest preview page that can display the selected tab unless a real semantic target already exists.
+- For final project HTML, generate real jump targets: chapter slides use `id="chapter-<n>"`, subtitle slides use `id="chapter-<n>-subtitle-<m>"`, and the deck controller switches slides internally without page reload.
 
 Project-specific HTML should be derived from this template library later. At this stage, do not generate separate project HTML files.

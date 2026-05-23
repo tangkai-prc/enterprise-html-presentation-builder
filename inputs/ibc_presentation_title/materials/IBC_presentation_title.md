@@ -25,10 +25,30 @@ Current scope is the reusable IBC presentation template library:
 - Cover page.
 - Chinese agenda templates for 2, 3, 4, and 5 chapters.
 - English agenda templates for 2, 3, 4, and 5 chapters.
-- One generated body page sample using the PPTX title-and-content layout.
+- One no-subtitle body page sample.
+- Seven subtitle body page samples covering 3 through 9 subtitle tabs.
 - Closing page.
 
 Only one HTML should be generated at this stage: `IBC_presentation_template_library.html`.
+
+The template library includes browser playback controls: previous/next, fullscreen with `F`, slide counter, and a semi-transparent left-side preview navigator for manual review. Outside fullscreen mode, hovering a preview item switches to that slide, and a small top-left toggle can collapse or restore the preview navigator; fullscreen mode hides it.
+
+Agenda chapter numbers and chapter titles are clickable links. Number and title links for the same chapter highlight as one group, and chapter content slides should use anchors such as `#chapter-1`, `#chapter-2`, and so on.
+
+Subtitle tabs default to subtitle 1 and support hover, focus, and click active-state switching during HTML review. Subtitle 1.2 through 1.9 route automatically to the smallest preview page that can display the selected tab unless a real semantic target already exists.
+
+## Actual Jump Rules
+
+Final project HTML should use semantic slide targets, not only the template-library preview fallback:
+
+- Agenda links target `#chapter-<chapter-number>`.
+- The first slide of each chapter uses `id="chapter-<chapter-number>"` and `data-chapter="<chapter-number>"`.
+- Subtitle links target `#chapter-<chapter-number>-subtitle-<subtitle-number>`.
+- Each subtitle content slide uses `id="chapter-<chapter-number>-subtitle-<subtitle-number>"`, `data-chapter="<chapter-number>"`, and `data-active-subtitle-index="<subtitle-number>"`.
+- Clicking an agenda item or subtitle tab switches the current slide inside the single-file HTML deck. It must not reload the page or rely on native document scrolling.
+- Agenda highlight follows the active slide's `data-chapter`.
+- Subtitle highlight follows the active slide's `data-active-subtitle-index`; if absent, subtitle 1 is active.
+- The review fallback that routes `subtitle 1.2` through `subtitle 1.9` to count-preview pages is only for `IBC_presentation_template_library.html`.
 
 ## Template Selection
 

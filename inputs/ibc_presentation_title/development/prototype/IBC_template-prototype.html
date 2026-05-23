@@ -6,6 +6,7 @@
   <title>IBC Template Prototype</title>
   <style>
     * { box-sizing: border-box; }
+    :root { --nav-space: 184px; }
     html, body {
       margin: 0;
       width: 100%;
@@ -14,11 +15,19 @@
       background: #101817;
       font-family: Arial, "Microsoft YaHei", sans-serif;
     }
-    .deck { position: fixed; inset: 0; display: grid; place-items: center; }
+    body.fullscreen-mode,
+    body.preview-collapsed { --nav-space: 0px; }
+    .deck {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding-left: var(--nav-space);
+    }
     .stage {
       position: relative;
-      width: min(100vw, calc(100vh * 16 / 9));
-      height: min(100vh, calc(100vw * 9 / 16));
+      width: min(calc(100vw - var(--nav-space)), calc(100vh * 16 / 9));
+      height: min(100vh, calc((100vw - var(--nav-space)) * 9 / 16));
       overflow: hidden;
       background: #fff;
       box-shadow: 0 18px 60px rgba(0,0,0,.38);
@@ -167,6 +176,8 @@
       line-height: 1;
       font-weight: 900;
       z-index: 4;
+      text-decoration: none;
+      cursor: pointer;
     }
     .agenda-text {
       position: absolute;
@@ -180,9 +191,23 @@
       line-height: 1.15;
       font-weight: 900;
       z-index: 4;
+      text-decoration: none;
+      cursor: pointer;
     }
     .agenda-num.inactive,
     .agenda-text.inactive { color: #7F7F7F; font-weight: 900; }
+    .agenda-num:hover,
+    .agenda-text:hover,
+    .agenda-num:focus-visible,
+    .agenda-text:focus-visible { color: #016F67; outline: none; text-shadow: .35px 0 0 currentColor; }
+    .agenda-num.agenda-pair-hover,
+    .agenda-text.agenda-pair-hover,
+    .agenda-num.agenda-current,
+    .agenda-text.agenda-current {
+      color: #016F67;
+      font-weight: 900;
+      text-shadow: .35px 0 0 currentColor;
+    }
     .n1 { left: 295.93px; top: 112.27px; } .n2 { left: 295.93px; top: 247.33px; } .n3 { left: 295.93px; top: 382.4px; } .n4 { left: 295.93px; top: 517.47px; }
     .t1 { left: 375.4px; top: 138.1px; width: 753.93px; height: 38.67px; } .t2 { left: 375.4px; top: 274.8px; } .t3 { left: 375.4px; top: 408px; } .t4 { left: 375.4px; top: 543.07px; }
     .agenda-2 .n1 { top: 220px; } .agenda-2 .n2 { top: 410px; }
@@ -230,6 +255,62 @@
       padding: 2px 18px 0 18px;
       z-index: 4;
     }
+    .subtitle-layout .content-main {
+      top: 181.87px;
+      height: 470px;
+    }
+    .subtitle-layout .logo {
+      z-index: 1;
+    }
+    .subtitle-band {
+      position: absolute;
+      left: 0;
+      top: 78.06px;
+      width: 1280px;
+      height: 68.07px;
+      background: #016F67;
+      z-index: 8;
+    }
+    .subtitle-tabs {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1280px;
+      height: 146.12px;
+      z-index: 9;
+    }
+    .subtitle-tab {
+      position: absolute;
+      top: 93.21px;
+      width: 120.94px;
+      height: 52.91px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      background: rgba(164, 201, 200, .32);
+      color: #016F67;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.05;
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      overflow: hidden;
+    }
+    .subtitle-tab.active,
+    .subtitle-tab.subtitle-current { background: #fff; }
+    .subtitle-tab:hover,
+    .subtitle-tab:focus-visible { background: #fff; outline: none; }
+    .subtitle-tab:nth-child(1) { left: 12.6px; }
+    .subtitle-tab:nth-child(2) { left: 153.4px; }
+    .subtitle-tab:nth-child(3) { left: 294.2px; }
+    .subtitle-tab:nth-child(4) { left: 435px; }
+    .subtitle-tab:nth-child(5) { left: 575.8px; }
+    .subtitle-tab:nth-child(6) { left: 716.6px; }
+    .subtitle-tab:nth-child(7) { left: 857.4px; }
+    .subtitle-tab:nth-child(8) { left: 998.2px; }
+    .subtitle-tab:nth-child(9) { left: 1139px; }
     .content-copy { width: 100%; }
     .content-copy h3 {
       margin: 0 0 26px;
@@ -276,9 +357,119 @@
     .closing-text p { margin: 16px 0 0; font: bold 24px/1.2 Arial, sans-serif; }
     .wind { position: absolute; left: 0; top: 368px; width: 180px; z-index: 6; }
     .tower { position: absolute; right: 0; top: 377px; width: 130px; z-index: 6; }
-    .controls { position: fixed; right: 18px; bottom: 18px; z-index: 40; display: flex; gap: 8px; align-items: center; }
+    .controls {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 40;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity .24s ease, transform .24s ease;
+    }
+    .controls.visible,
+    .controls:hover,
+    .controls:focus-within {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
     .controls button, .counter { min-width: 38px; height: 38px; border: 1px solid rgba(255,255,255,.28); border-radius: 6px; color: #fff; background: rgba(0,0,0,.52); font: bold 14px Arial, sans-serif; }
     .counter { min-width: 58px; display: grid; place-items: center; }
+    .preview-nav {
+      position: fixed;
+      left: 14px;
+      top: 18px;
+      bottom: 72px;
+      width: 170px;
+      z-index: 35;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      padding: 2px 12px 2px 2px;
+      opacity: .62;
+      transition: opacity .24s ease;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.34) transparent;
+    }
+    .preview-nav:hover,
+    .preview-nav:focus-within,
+    .preview-nav.active { opacity: .96; }
+    body.fullscreen-mode .preview-nav,
+    body.preview-collapsed .preview-nav,
+    :fullscreen .preview-nav { display: none; }
+    .preview-toggle {
+      position: fixed;
+      left: 8px;
+      top: 8px;
+      z-index: 42;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 5px;
+      color: #fff;
+      background: rgba(0,0,0,.58);
+      font: 900 14px/1 Arial, sans-serif;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      opacity: .82;
+      transition: opacity .18s ease, background .18s ease;
+    }
+    .preview-toggle:hover,
+    .preview-toggle:focus-visible { opacity: 1; background: rgba(0,112,107,.88); }
+    body.fullscreen-mode .preview-toggle,
+    :fullscreen .preview-toggle { display: none; }
+    .preview-thumb {
+      position: relative;
+      flex: 0 0 auto;
+      width: 156px;
+      height: 110px;
+      padding: 4px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 5px;
+      background: rgba(0,0,0,.46);
+      box-shadow: 0 5px 18px rgba(0,0,0,.18);
+      cursor: pointer;
+    }
+    .preview-thumb.active {
+      border-color: #fff;
+      background: rgba(0,112,107,.70);
+      box-shadow: 0 0 0 2px rgba(255,255,255,.36), 0 8px 24px rgba(0,0,0,.26);
+    }
+    .preview-frame {
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      width: 144px;
+      height: 81px;
+      overflow: hidden;
+      background: #fff;
+      pointer-events: none;
+    }
+    .preview-frame .slide-inner {
+      display: block !important;
+      transform: scale(.1125) !important;
+      transform-origin: top left !important;
+    }
+    .preview-caption {
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      bottom: 5px;
+      height: 18px;
+      overflow: hidden;
+      color: rgba(255,255,255,.92);
+      font: 700 11px/18px Arial, sans-serif;
+      text-align: left;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -297,8 +488,8 @@
         <div class="slide-inner agenda-2">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
           <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div>
-          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">第一章</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">第二章</a>
         </div>
       </section>
 
@@ -306,8 +497,8 @@
         <div class="slide-inner agenda-3">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
           <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div>
-          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div><div class="agenda-text t3 inactive">第三章</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a><a class="agenda-num n3 inactive" href="#chapter-3" data-chapter-link="3">3</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">第一章</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">第二章</a><a class="agenda-text t3 inactive" href="#chapter-3" data-chapter-link="3">第三章</a>
         </div>
       </section>
 
@@ -315,8 +506,8 @@
         <div class="slide-inner">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
           <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div>
-          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div><div class="agenda-text t3 inactive">第三章</div><div class="agenda-text t4 inactive">第四章</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a><a class="agenda-num n3 inactive" href="#chapter-3" data-chapter-link="3">3</a><a class="agenda-num n4 inactive" href="#chapter-4" data-chapter-link="4">4</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">第一章</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">第二章</a><a class="agenda-text t3 inactive" href="#chapter-3" data-chapter-link="3">第三章</a><a class="agenda-text t4 inactive" href="#chapter-4" data-chapter-link="4">第四章</a>
         </div>
       </section>
 
@@ -324,8 +515,8 @@
         <div class="slide-inner agenda-5">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
           <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div><div class="agenda-num n5 inactive">5</div>
-          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div><div class="agenda-text t3 inactive">第三章</div><div class="agenda-text t4 inactive">第四章</div><div class="agenda-text t5 inactive">第五章</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a><a class="agenda-num n3 inactive" href="#chapter-3" data-chapter-link="3">3</a><a class="agenda-num n4 inactive" href="#chapter-4" data-chapter-link="4">4</a><a class="agenda-num n5 inactive" href="#chapter-5" data-chapter-link="5">5</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">第一章</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">第二章</a><a class="agenda-text t3 inactive" href="#chapter-3" data-chapter-link="3">第三章</a><a class="agenda-text t4 inactive" href="#chapter-4" data-chapter-link="4">第四章</a><a class="agenda-text t5 inactive" href="#chapter-5" data-chapter-link="5">第五章</a>
         </div>
       </section>
 
@@ -333,8 +524,8 @@
         <div class="slide-inner agenda-2">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
           <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div>
-          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">Chapter 1</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">Chapter 2</a>
         </div>
       </section>
 
@@ -342,8 +533,8 @@
         <div class="slide-inner agenda-3">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
           <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div>
-          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div><div class="agenda-text t3 inactive">Chapter 3</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a><a class="agenda-num n3 inactive" href="#chapter-3" data-chapter-link="3">3</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">Chapter 1</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">Chapter 2</a><a class="agenda-text t3 inactive" href="#chapter-3" data-chapter-link="3">Chapter 3</a>
         </div>
       </section>
 
@@ -351,8 +542,8 @@
         <div class="slide-inner">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
           <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div>
-          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div><div class="agenda-text t3 inactive">Chapter 3</div><div class="agenda-text t4 inactive">Chapter 4</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a><a class="agenda-num n3 inactive" href="#chapter-3" data-chapter-link="3">3</a><a class="agenda-num n4 inactive" href="#chapter-4" data-chapter-link="4">4</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">Chapter 1</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">Chapter 2</a><a class="agenda-text t3 inactive" href="#chapter-3" data-chapter-link="3">Chapter 3</a><a class="agenda-text t4 inactive" href="#chapter-4" data-chapter-link="4">Chapter 4</a>
         </div>
       </section>
 
@@ -360,12 +551,12 @@
         <div class="slide-inner agenda-5">
           <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
           <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
-          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div><div class="agenda-num n5 inactive">5</div>
-          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div><div class="agenda-text t3 inactive">Chapter 3</div><div class="agenda-text t4 inactive">Chapter 4</div><div class="agenda-text t5 inactive">Chapter 5</div>
+          <a class="agenda-num n1" href="#chapter-1" data-chapter-link="1">1</a><a class="agenda-num n2 inactive" href="#chapter-2" data-chapter-link="2">2</a><a class="agenda-num n3 inactive" href="#chapter-3" data-chapter-link="3">3</a><a class="agenda-num n4 inactive" href="#chapter-4" data-chapter-link="4">4</a><a class="agenda-num n5 inactive" href="#chapter-5" data-chapter-link="5">5</a>
+          <a class="agenda-text t1" href="#chapter-1" data-chapter-link="1">Chapter 1</a><a class="agenda-text t2 inactive" href="#chapter-2" data-chapter-link="2">Chapter 2</a><a class="agenda-text t3 inactive" href="#chapter-3" data-chapter-link="3">Chapter 3</a><a class="agenda-text t4 inactive" href="#chapter-4" data-chapter-link="4">Chapter 4</a><a class="agenda-text t5 inactive" href="#chapter-5" data-chapter-link="5">Chapter 5</a>
         </div>
       </section>
 
-      <section class="slide" data-slide-type="content-chapter-body-layout14">
+      <section class="slide" id="chapter-1" data-slide-type="content-chapter-body-layout14" data-chapter="1">
         <div class="slide-inner content-slide">
           <div class="logo" aria-label="State Grid / NARI logo"></div>
           <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
@@ -385,6 +576,209 @@
         </div>
       </section>
 
+      <section class="slide" id="subtitle-count-3" data-slide-type="content-title-subtitle-body-layout16" data-chapter="1" data-active-subtitle-index="1">
+        <div class="slide-inner content-slide subtitle-layout">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
+          <h2 class="content-title">Title of Chapter 1</h2>
+          <div class="subtitle-band"></div>
+          <nav class="subtitle-tabs" aria-label="Chapter subtitles">
+            <a class="subtitle-tab active" href="#subtitle-count-3">subtitle 1.1</a>
+            <a class="subtitle-tab" href="#subtitle-count-3">subtitle 1.2</a>
+            <a class="subtitle-tab" href="#subtitle-count-3">subtitle 1.3</a>
+          </nav>
+          <div class="content-wave"></div>
+          <main class="content-main">
+            <section class="content-copy">
+              <h3>3 Subtitle Tabs</h3>
+              <ul>
+                <li>Minimum subtitle navigation style.</li>
+                <li>Active tab uses white background.</li>
+                <li>Inactive tabs use translucent pale green.</li>
+              </ul>
+            </section>
+          </main>
+          <div class="content-page-num">4</div>
+        </div>
+      </section>
+
+      <section class="slide" id="subtitle-count-4" data-slide-type="content-title-subtitle-body-layout16" data-chapter="1" data-active-subtitle-index="1">
+        <div class="slide-inner content-slide subtitle-layout">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
+          <h2 class="content-title">Title of Chapter 1</h2>
+          <div class="subtitle-band"></div>
+          <nav class="subtitle-tabs" aria-label="Chapter subtitles">
+            <a class="subtitle-tab active" href="#subtitle-count-4">subtitle 1.1</a>
+            <a class="subtitle-tab" href="#subtitle-count-4">subtitle 1.2</a>
+            <a class="subtitle-tab" href="#subtitle-count-4">subtitle 1.3</a>
+            <a class="subtitle-tab" href="#subtitle-count-4">subtitle 1.4</a>
+          </nav>
+          <div class="content-wave"></div>
+          <main class="content-main">
+            <section class="content-copy">
+              <h3>4 Subtitle Tabs</h3>
+              <ul>
+                <li>Four fixed-width tabs remain aligned to the PPTX spacing.</li>
+                <li>The green band covers the logo overlap.</li>
+                <li>Tabs stay in one row.</li>
+              </ul>
+            </section>
+          </main>
+          <div class="content-page-num">5</div>
+        </div>
+      </section>
+
+      <section class="slide" id="subtitle-count-5" data-slide-type="content-title-subtitle-body-layout16" data-chapter="1" data-active-subtitle-index="1">
+        <div class="slide-inner content-slide subtitle-layout">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
+          <h2 class="content-title">Title of Chapter 1</h2>
+          <div class="subtitle-band"></div>
+          <nav class="subtitle-tabs" aria-label="Chapter subtitles">
+            <a class="subtitle-tab active" href="#subtitle-count-5">subtitle 1.1</a>
+            <a class="subtitle-tab" href="#subtitle-count-5">subtitle 1.2</a>
+            <a class="subtitle-tab" href="#subtitle-count-5">subtitle 1.3</a>
+            <a class="subtitle-tab" href="#subtitle-count-5">subtitle 1.4</a>
+            <a class="subtitle-tab" href="#subtitle-count-5">subtitle 1.5</a>
+          </nav>
+          <div class="content-wave"></div>
+          <main class="content-main">
+            <section class="content-copy">
+              <h3>5 Subtitle Tabs</h3>
+              <ul>
+                <li>Five tabs follow the same 140.8px step.</li>
+                <li>Each tab keeps the same PPTX-derived box size.</li>
+                <li>Longer labels should wrap inside the box.</li>
+              </ul>
+            </section>
+          </main>
+          <div class="content-page-num">6</div>
+        </div>
+      </section>
+
+      <section class="slide" id="subtitle-count-6" data-slide-type="content-title-subtitle-body-layout16" data-chapter="1" data-active-subtitle-index="1">
+        <div class="slide-inner content-slide subtitle-layout">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
+          <h2 class="content-title">Title of Chapter 1</h2>
+          <div class="subtitle-band"></div>
+          <nav class="subtitle-tabs" aria-label="Chapter subtitles">
+            <a class="subtitle-tab active" href="#subtitle-count-6">subtitle 1.1</a>
+            <a class="subtitle-tab" href="#subtitle-count-6">subtitle 1.2</a>
+            <a class="subtitle-tab" href="#subtitle-count-6">subtitle 1.3</a>
+            <a class="subtitle-tab" href="#subtitle-count-6">subtitle 1.4</a>
+            <a class="subtitle-tab" href="#subtitle-count-6">subtitle 1.5</a>
+            <a class="subtitle-tab" href="#subtitle-count-6">subtitle 1.6</a>
+          </nav>
+          <div class="content-wave"></div>
+          <main class="content-main">
+            <section class="content-copy">
+              <h3>6 Subtitle Tabs</h3>
+              <ul>
+                <li>Six tabs still leave wide right-side space.</li>
+                <li>Use this for medium-length chapter navigation.</li>
+                <li>Active tab remains visually stable.</li>
+              </ul>
+            </section>
+          </main>
+          <div class="content-page-num">7</div>
+        </div>
+      </section>
+
+      <section class="slide" id="subtitle-count-7" data-slide-type="content-title-subtitle-body-layout16" data-chapter="1" data-active-subtitle-index="1">
+        <div class="slide-inner content-slide subtitle-layout">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
+          <h2 class="content-title">Title of Chapter 1</h2>
+          <div class="subtitle-band"></div>
+          <nav class="subtitle-tabs" aria-label="Chapter subtitles">
+            <a class="subtitle-tab active" href="#subtitle-count-7">subtitle 1.1</a>
+            <a class="subtitle-tab" href="#subtitle-count-7">subtitle 1.2</a>
+            <a class="subtitle-tab" href="#subtitle-count-7">subtitle 1.3</a>
+            <a class="subtitle-tab" href="#subtitle-count-7">subtitle 1.4</a>
+            <a class="subtitle-tab" href="#subtitle-count-7">subtitle 1.5</a>
+            <a class="subtitle-tab" href="#subtitle-count-7">subtitle 1.6</a>
+            <a class="subtitle-tab" href="#subtitle-count-7">subtitle 1.7</a>
+          </nav>
+          <div class="content-wave"></div>
+          <main class="content-main">
+            <section class="content-copy">
+              <h3>7 Subtitle Tabs</h3>
+              <ul>
+                <li>Seven tabs approach the dense-navigation case.</li>
+                <li>Labels should stay concise.</li>
+                <li>Do not add a second tab row.</li>
+              </ul>
+            </section>
+          </main>
+          <div class="content-page-num">8</div>
+        </div>
+      </section>
+
+      <section class="slide" id="subtitle-count-8" data-slide-type="content-title-subtitle-body-layout16" data-chapter="1" data-active-subtitle-index="1">
+        <div class="slide-inner content-slide subtitle-layout">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
+          <h2 class="content-title">Title of Chapter 1</h2>
+          <div class="subtitle-band"></div>
+          <nav class="subtitle-tabs" aria-label="Chapter subtitles">
+            <a class="subtitle-tab active" href="#subtitle-count-8">subtitle 1.1</a>
+            <a class="subtitle-tab" href="#subtitle-count-8">subtitle 1.2</a>
+            <a class="subtitle-tab" href="#subtitle-count-8">subtitle 1.3</a>
+            <a class="subtitle-tab" href="#subtitle-count-8">subtitle 1.4</a>
+            <a class="subtitle-tab" href="#subtitle-count-8">subtitle 1.5</a>
+            <a class="subtitle-tab" href="#subtitle-count-8">subtitle 1.6</a>
+            <a class="subtitle-tab" href="#subtitle-count-8">subtitle 1.7</a>
+            <a class="subtitle-tab" href="#subtitle-count-8">subtitle 1.8</a>
+          </nav>
+          <div class="content-wave"></div>
+          <main class="content-main">
+            <section class="content-copy">
+              <h3>8 Subtitle Tabs</h3>
+              <ul>
+                <li>Eight tabs keep the PPTX spacing and fixed widths.</li>
+                <li>Use shortened labels when possible.</li>
+                <li>The rightmost tab remains inside the slide canvas.</li>
+              </ul>
+            </section>
+          </main>
+          <div class="content-page-num">9</div>
+        </div>
+      </section>
+
+      <section class="slide" id="subtitle-count-9" data-slide-type="content-title-subtitle-body-layout16" data-chapter="1" data-active-subtitle-index="1">
+        <div class="slide-inner content-slide subtitle-layout">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <img class="chapter-mark" src="IBC_template_assets/chapter-mark-layout14.svg" alt="">
+          <h2 class="content-title">Title of Chapter 1</h2>
+          <div class="subtitle-band"></div>
+          <nav class="subtitle-tabs" aria-label="Chapter subtitles">
+            <a class="subtitle-tab active" href="#subtitle-count-9">subtitle 1.1</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.2</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.3</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.4</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.5</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.6</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.7</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.8</a>
+            <a class="subtitle-tab" href="#subtitle-count-9">subtitle 1.9</a>
+          </nav>
+          <div class="content-wave"></div>
+          <main class="content-main">
+            <section class="content-copy">
+              <h3>9 Subtitle Tabs</h3>
+              <ul>
+                <li>Maximum supported subtitle-tab count.</li>
+                <li>The ninth tab lands at the PPTX-derived far-right position.</li>
+                <li>Use compact subtitle labels for this density.</li>
+              </ul>
+            </section>
+          </main>
+          <div class="content-page-num">10</div>
+        </div>
+      </section>
+
       <section class="slide" data-slide-type="closing">
         <div class="slide-inner">
           <div class="deep-bg"></div><div class="light-bg"></div>
@@ -395,20 +789,198 @@
       </section>
     </div>
   </div>
-  <nav class="controls"><button id="prev" type="button">‹</button><div class="counter" id="counter">1/11</div><button id="next" type="button">›</button><button id="full" type="button">□</button></nav>
+  <button class="preview-toggle" id="previewToggle" type="button" title="Hide slide previews" aria-label="Hide slide previews" aria-expanded="true">‹</button>
+  <aside class="preview-nav" id="previewNav" aria-label="Slide preview navigation"></aside>
+  <nav class="controls visible" id="controls">
+    <button id="prev" type="button" title="Previous slide">‹</button>
+    <div class="counter" id="counter">1/18</div>
+    <button id="next" type="button" title="Next slide">›</button>
+    <button id="full" type="button" title="Fullscreen (F)">F</button>
+  </nav>
   <script>
     const slides = Array.from(document.querySelectorAll('.slide'));
     const stage = document.getElementById('stage');
     const counter = document.getElementById('counter');
+    const controls = document.getElementById('controls');
+    const previewNav = document.getElementById('previewNav');
+    const previewToggle = document.getElementById('previewToggle');
+    let controlsTimer;
+    let previewTimer;
+    let previewButtons = [];
     let current = 0;
+    let currentChapter = '1';
+    let currentSubtitle = '1';
     function fitSlides() {
       const scale = stage.clientWidth / 1280;
-      document.querySelectorAll('.slide-inner').forEach(el => el.style.transform = `scale(${scale})`);
+      document.querySelectorAll('#stage > .slide > .slide-inner').forEach(el => el.style.transform = `scale(${scale})`);
+    }
+    function formatSlideType(value) {
+      return String(value || 'slide').replace(/^agenda-/, '').replace(/-/g, ' ');
+    }
+    function buildPreviewNav() {
+      previewNav.innerHTML = '';
+      previewButtons = slides.map((slide, index) => {
+        const button = document.createElement('button');
+        const frame = document.createElement('span');
+        const caption = document.createElement('span');
+        const clone = slide.querySelector('.slide-inner').cloneNode(true);
+        button.type = 'button';
+        button.className = 'preview-thumb';
+        button.title = `Go to slide ${index + 1}: ${formatSlideType(slide.dataset.slideType)}`;
+        frame.className = 'preview-frame';
+        caption.className = 'preview-caption';
+        caption.textContent = `${index + 1}. ${formatSlideType(slide.dataset.slideType)}`;
+        clone.removeAttribute('style');
+        clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+        clone.querySelectorAll('a').forEach(link => {
+          link.removeAttribute('href');
+          link.setAttribute('tabindex', '-1');
+        });
+        frame.appendChild(clone);
+        button.append(frame, caption);
+        button.addEventListener('mouseenter', () => {
+          show(index);
+          revealPreviewNav();
+        });
+        button.addEventListener('click', () => {
+          show(index);
+          revealPreviewNav();
+        });
+        previewNav.appendChild(button);
+        return button;
+      });
+    }
+    function prepareSubtitleTabs() {
+      document.querySelectorAll('.subtitle-tabs').forEach(nav => {
+        const slide = nav.closest('.slide');
+        const chapter = slide?.dataset.chapter || '1';
+        Array.from(nav.querySelectorAll('.subtitle-tab')).forEach((tab, index) => {
+          const subtitle = String(index + 1);
+          tab.dataset.subtitleLink = subtitle;
+          tab.dataset.subtitleTarget = `#subtitle-count-${Math.max(3, Number(subtitle))}`;
+          tab.href = `#chapter-${chapter}-subtitle-${subtitle}`;
+        });
+      });
+    }
+    function syncPreviewNav() {
+      previewButtons.forEach((button, index) => button.classList.toggle('active', index === current));
+      previewButtons[current]?.scrollIntoView({ block: 'nearest' });
     }
     function show(i) {
       current = Math.max(0, Math.min(slides.length - 1, i));
       slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
       counter.textContent = `${current + 1}/${slides.length}`;
+      if (slides[current].dataset.chapter) currentChapter = slides[current].dataset.chapter;
+      syncSubtitleTabs(slides[current]);
+      syncAgendaLinks();
+      syncPreviewNav();
+      revealControls();
+    }
+    function normalizeText(value) {
+      return String(value || '').trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+    function syncSubtitleTabs(slide) {
+      const tabs = Array.from(slide.querySelectorAll('.subtitle-tab'));
+      if (!tabs.length) return;
+      const configuredIndex = Number(slide.dataset.activeSubtitleIndex || 0) - 1;
+      const configuredLabel = normalizeText(slide.dataset.activeSubtitleLabel);
+      const titleLabel = normalizeText(slide.querySelector('.content-copy h3')?.textContent);
+      const currentHash = slide.id ? `#${slide.id}` : '';
+      const selectedIndex = Number(currentSubtitle || 0) - 1;
+      let activeIndex = selectedIndex >= 0 && selectedIndex < tabs.length ? selectedIndex : -1;
+      if (activeIndex < 0 && configuredIndex >= 0) activeIndex = configuredIndex;
+      if (activeIndex < 0 && configuredLabel) {
+        activeIndex = tabs.findIndex(tab => normalizeText(tab.textContent) === configuredLabel);
+      }
+      if (activeIndex < 0 && titleLabel) {
+        activeIndex = tabs.findIndex(tab => {
+          const label = normalizeText(tab.textContent);
+          return label && (label === titleLabel || titleLabel.includes(label) || label.includes(titleLabel));
+        });
+      }
+      if (activeIndex < 0 && currentHash) {
+        activeIndex = tabs.findIndex(tab => new URL(tab.href).hash === currentHash);
+      }
+      if (activeIndex < 0) activeIndex = 0;
+      tabs.forEach((tab, index) => {
+        const isActive = index === activeIndex;
+        tab.classList.toggle('active', isActive);
+        tab.classList.toggle('subtitle-current', isActive);
+      });
+    }
+    function showSubtitleLink(tab) {
+      currentSubtitle = tab.dataset.subtitleLink || '1';
+      const hash = new URL(tab.href).hash;
+      const semanticTarget = hash ? document.querySelector(hash) : null;
+      const reviewTarget = tab.dataset.subtitleTarget ? document.querySelector(tab.dataset.subtitleTarget) : null;
+      const target = semanticTarget || reviewTarget || slides[current];
+      const slide = target?.classList.contains('slide') ? target : slides[current];
+      const index = slides.indexOf(slide);
+      if (index >= 0) show(index);
+      else syncSubtitleTabs(slides[current]);
+      if (slide?.id) history.pushState(null, '', `#${slide.id}`);
+      return true;
+    }
+    function setAgendaPairHover(chapter, active) {
+      document.querySelectorAll(`[data-chapter-link="${chapter}"]`).forEach(link => {
+        link.classList.toggle('agenda-pair-hover', active);
+      });
+    }
+    function clearAgendaPairHover() {
+      document.querySelectorAll('[data-chapter-link]').forEach(link => link.classList.remove('agenda-pair-hover'));
+    }
+    function syncAgendaLinks() {
+      document.querySelectorAll('[data-chapter-link]').forEach(link => {
+        const isCurrent = link.dataset.chapterLink === currentChapter;
+        link.classList.toggle('agenda-current', isCurrent);
+        link.classList.toggle('inactive', !isCurrent);
+      });
+    }
+    function chapterTarget(chapter, hash) {
+      const hashTarget = hash ? document.querySelector(hash) : null;
+      if (hashTarget?.classList.contains('slide')) return hashTarget;
+      return document.querySelector(`.slide[data-chapter="${chapter}"]`);
+    }
+    function showChapterLink(link) {
+      const chapter = link.dataset.chapterLink;
+      const hash = new URL(link.href).hash;
+      const target = chapterTarget(chapter, hash);
+      currentChapter = chapter;
+      clearAgendaPairHover();
+      syncAgendaLinks();
+      if (!target) return false;
+      const index = slides.indexOf(target);
+      if (index < 0) return false;
+      show(index);
+      history.pushState(null, '', target.id ? `#${target.id}` : hash);
+      return true;
+    }
+    function revealControls() {
+      controls.classList.add('visible');
+      clearTimeout(controlsTimer);
+      controlsTimer = setTimeout(() => controls.classList.remove('visible'), 2800);
+    }
+    function revealPreviewNav() {
+      if (document.body.classList.contains('preview-collapsed')) return;
+      previewNav.classList.add('active');
+      clearTimeout(previewTimer);
+      previewTimer = setTimeout(() => previewNav.classList.remove('active'), 1800);
+    }
+    function syncPreviewToggle() {
+      const collapsed = document.body.classList.contains('preview-collapsed');
+      previewToggle.textContent = collapsed ? '›' : '‹';
+      previewToggle.title = collapsed ? 'Show slide previews' : 'Hide slide previews';
+      previewToggle.setAttribute('aria-label', previewToggle.title);
+      previewToggle.setAttribute('aria-expanded', String(!collapsed));
+    }
+    function showHash(hash) {
+      if (!hash) return false;
+      const target = document.querySelector(hash);
+      if (!target || !target.classList.contains('slide')) return false;
+      const index = slides.indexOf(target);
+      if (index < 0) return false;
+      show(index);
+      return true;
     }
     function updateCoverDate() {
       const target = document.getElementById('cover-date');
@@ -418,14 +990,60 @@
     }
     document.getElementById('prev').onclick = () => show(current - 1);
     document.getElementById('next').onclick = () => show(current + 1);
+    previewToggle.addEventListener('click', () => {
+      document.body.classList.toggle('preview-collapsed');
+      syncPreviewToggle();
+      fitSlides();
+    });
     document.getElementById('full').onclick = () => document.fullscreenElement ? document.exitFullscreen?.() : document.documentElement.requestFullscreen?.();
+    document.addEventListener('fullscreenchange', () => {
+      document.body.classList.toggle('fullscreen-mode', Boolean(document.fullscreenElement));
+      fitSlides();
+    });
     window.addEventListener('keydown', e => {
-      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) show(current + 1);
-      if (['ArrowLeft', 'PageUp'].includes(e.key)) show(current - 1);
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) return;
+      revealControls();
+      revealPreviewNav();
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) {
+        e.preventDefault();
+        show(current + 1);
+      }
+      if (['ArrowLeft', 'PageUp'].includes(e.key)) {
+        e.preventDefault();
+        show(current - 1);
+      }
       if (e.key.toLowerCase() === 'f') document.getElementById('full').click();
     });
+    window.addEventListener('mousemove', () => { revealControls(); revealPreviewNav(); });
+    window.addEventListener('touchstart', () => { revealControls(); revealPreviewNav(); });
+    document.querySelectorAll('.subtitle-tab').forEach(tab => {
+      tab.addEventListener('mouseenter', () => {
+        currentSubtitle = tab.dataset.subtitleLink || '1';
+        syncSubtitleTabs(slides[current]);
+      });
+      tab.addEventListener('focus', () => {
+        currentSubtitle = tab.dataset.subtitleLink || '1';
+        syncSubtitleTabs(slides[current]);
+      });
+      tab.addEventListener('click', event => {
+        event.preventDefault();
+        showSubtitleLink(tab);
+      });
+    });
+    document.querySelectorAll('[data-chapter-link]').forEach(link => {
+      const chapter = link.dataset.chapterLink;
+      link.addEventListener('mouseenter', () => setAgendaPairHover(chapter, true));
+      link.addEventListener('mouseleave', () => setAgendaPairHover(chapter, false));
+      link.addEventListener('focus', () => setAgendaPairHover(chapter, true));
+      link.addEventListener('blur', () => setAgendaPairHover(chapter, false));
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showChapterLink(link);
+      });
+    });
+    window.addEventListener('hashchange', () => showHash(location.hash));
     window.addEventListener('resize', fitSlides);
-    updateCoverDate(); fitSlides(); show(0);
+    updateCoverDate(); prepareSubtitleTabs(); buildPreviewNav(); syncPreviewToggle(); fitSlides(); if (!showHash(location.hash)) show(0);
   </script>
 </body>
 </html>

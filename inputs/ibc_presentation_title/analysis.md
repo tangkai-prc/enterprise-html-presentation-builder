@@ -164,6 +164,49 @@
 - 当前 HTML 审核版已按 PPTX 矢量组合提取为高清 SVG 资产 `IBC_template_assets/chapter-mark-layout14.svg`，而不是用截图或 CSS 拼块重画；标题框为 `left: 98.17px; top: 17.1px; width: 835px; height: 58px`，用 flex 垂直居中以保证标题与图标中心水平对齐；标题使用 Arial bold `36px` 并加极轻微视觉增重，避免浏览器中看起来比 PPT 偏小、偏细。
 - XML 中相近读数：双菱形组合 `组合 7` 约 `2.11cm x 1.40cm`；标题占位符 `文本占位符 3` 位于 `x=98.17, y=25.95, w=843.59, h=40.44`，读到 Arial Black，20.85 pt，加粗，`#016F67`。HTML 实现以用户确认规则优先。
 
+### 正文页子标题标签样式
+
+- 参考 PPT 实际第七页，对应 `slide7.xml`，其引用版式为 `slideLayout16.xml`，版式名 `10_小节`。
+- 该样式在 HTML 模板中记为“有子标题的标题—正文页”，适用于章节下存在多个子标题页面的内容。
+- 子标题最少 3 项，最多 9 项。
+- 子标题区域来自母版顶部横向绿色带：`x=0.00, y=78.06, w=1280.00, h=68.07`，背景 `#016F67`。
+- 单个子标题方块来自母版读数：`w=120.94, h=52.91, y=93.21`，首项 `x=12.60`，横向步距约 `140.80`。
+- 实际生成时子标题方块需要自适应：根据子标题数量和最长子标题文字估算统一按钮宽度与统一间距，所有按钮保持相同宽度、同一水平线和一致间距。
+- 自适应边界建议：`left-bound=12.60px`、`right-bound=1260px`、`height=52.91px`、默认宽度 `120.94px`、最大宽度 `160px`、最小宽度 `92px`。
+- 如果文字较长，先统一扩大所有按钮；仍放不下时再统一缩小按钮并降低字号。禁止只放大某一个按钮，否则会破坏母版水平节奏。
+- 活动子标题方块背景为白色，文字为 Arial 加粗、全局绿色 `#016F67`。
+- 非活动子标题方块背景为 `#A4C9C8` 透明度约 `32%`，文字同为 Arial 加粗、全局绿色。
+- PPTX 占位符文字读取为 Arial、加粗、`#016F67`；背板矩形 endParaRPr 中出现 `sz=900`。HTML 初稿按 `12px` 实现后视觉偏小，审核版调整为 Arial `16px`、`font-weight: 900`，长文本优先两行换行，必要时降到 `11px`。
+- 子标题页需要处理右上角 logo 与绿色填充条的重叠：在该版式中将企业 logo 降到底层，绿色填充条置于其上方，覆盖重叠部分，子标题标签再置于填充条之上。
+- HTML 中子标题方块应使用 `<a>`，允许跳转到对应子标题页，例如 `#chapter-1-subtitle-1`。
+- 单文件 HTML 中通过 hash 定位并更新当前 slide index，不进行页面重载。
+- 子标题高亮应随当前页面标题或页面 metadata 自动变更，优先读取 `data-active-subtitle-index`，其次读取 `data-active-subtitle-label`、正文标题文本、当前 slide hash。
+- 子标题 tab 按页面内顺序自动绑定 `data-subtitle-link`，默认选择子标题 1；鼠标移入、键盘聚焦或点击某个子标题后，当前页面的高亮 tab 立即切换。
+- 子标题点击行为与目录章节一致：优先跳转到语义锚点，例如 `#chapter-1-subtitle-2`；如果当前模板库没有单独子标题目标页，则自动跳到最小可展示该子标题编号的审核样例页，例如 1.2/1.3 跳到 3 项子标题页，1.9 跳到 9 项子标题页。
+- 模板库审核版包含 3、4、5、6、7、8、9 个子标题的 7 张数量预览页，每页展示一种子标题数量效果。
+- 控制条中的全屏按钮显示为 `F`，与键盘快捷键一致，不再显示方块符号。
+- HTML 控制提示默认置于 Web 页面左下角，加载和交互时显示，空闲后自动隐藏。
+- 控制条保留上一页、下一页、页码计数和 `F` 全屏，不再提供页码输入和 `Go` 按钮。
+- Web 页面左侧提供半透明竖向 slide 预览导航，预览项使用实际 slide DOM 缩放生成，接近 PowerPoint 未播放/编辑态的缩略图效果；非全屏状态下画布向右让出版面，鼠标移入预览项即可跳转到对应页。
+- 非全屏状态下提供左上角小型折叠按钮，可隐藏或恢复左侧预览导航；隐藏后画布恢复居中全宽。
+- 全屏状态下隐藏左侧预览导航，画布恢复居中全宽播放。
+- 目录页章节编号和章节文字均使用可点击链接，目标锚点约定为 `#chapter-1`、`#chapter-2` 等；点击后由单文件 HTML 内部切换当前 slide，不触发页面重载。
+- 目录中的章节编号和章节文字按同一 `data-chapter-link` 绑定为交互组：悬停、键盘聚焦或点击任一部分时，数字和章节名整体高亮。
+- 当前章节状态由正文页 `data-chapter` 驱动；切换到某章正文后，所有目录模板中对应章节同步高亮，其他章节恢复非活动灰色。
+- 正文页应按章节添加 `id="chapter-<number>"` 和 `data-chapter="<number>"`，目录跳转优先定位到对应章节的第一张正文页。
+- 详细设计记录见 `inputs/ibc_presentation_title/development/analysis-data/IBC_template-subtitle-body-layout.md`。
+
+### 实际项目跳转规则
+
+- 目录跳转：每个章节入口由数字和章节名组成，两者都使用同一 `data-chapter-link="<chapter-number>"`，并指向 `#chapter-<chapter-number>`。
+- 章节目标页：每章第一张正文页必须设置 `id="chapter-<chapter-number>"` 和 `data-chapter="<chapter-number>"`，例如第一章为 `<section class="slide" id="chapter-1" data-chapter="1">`。
+- 目录交互：点击目录中的数字或章节名时，在当前单文件 HTML deck 内调用 slide 切换逻辑；不得触发页面刷新或浏览器默认滚动。
+- 目录高亮：当前章节由 active slide 的 `data-chapter` 决定；切换到任意章节正文页后，所有目录页里相同 `data-chapter-link` 的数字和章节名一起高亮，其他章节恢复非活动灰色。
+- 子标题跳转：每个子标题 tab 指向 `#chapter-<chapter-number>-subtitle-<subtitle-number>`，例如 `subtitle 1.2` 指向 `#chapter-1-subtitle-2`。
+- 子标题目标页：每个实际子标题内容页必须设置 `id="chapter-<chapter-number>-subtitle-<subtitle-number>"`、`data-chapter="<chapter-number>"`、`data-active-subtitle-index="<subtitle-number>"`。
+- 子标题高亮：点击、键盘聚焦或跳转到某个子标题内容页后，页面顶部同组子标题 tab 中对应项显示白色活动背景；默认活动项为子标题 1。
+- 审核 fallback：仅在 `IBC_presentation_template_library.html` 这种模板库审核文件中，若实际语义目标页不存在，才允许把 `subtitle 1.2` 到 `subtitle 1.9` 路由到最小可展示该编号的预览页。正式项目输出应优先生成真实语义目标页。
+
 ### 尾页布局
 
 - 口号：居中，约 `x=0, y=294, w=1280, h=71`。
