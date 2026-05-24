@@ -2,6 +2,16 @@
 
 This folder contains the IBC/NARI project inputs and development context.
 
+This folder is now the fixed base template source for future IBC-style HTML presentation projects:
+
+```text
+inputs/ibc_presentation_title
+```
+
+Future projects should derive style, layout, navigation, and reusable HTML behavior from this folder's analyzed template library. They do not need to include or reread `template/IBC_template.pptx` unless the official IBC PowerPoint template changes, a new master layout is required, or new master assets must be extracted.
+
+中文说明：`inputs/ibc_presentation_title` 是后续实际项目默认继承的 IBC 母版基座。新项目通常只需要准备 `materials/project.md`、图片和数据，不需要再复制 `IBC_template.pptx`。PPTX 只作为最初母版来源和必要时回查的参考。
+
 ## Structure
 
 ```text
@@ -34,7 +44,8 @@ baseline/
 - `materials/brief.md`: compatibility brief kept for older local scripts.
 - `materials/assets/`: user-provided project images, icons, charts, or other visual assets.
 - `materials/data/`: user-provided structured data.
-- `analysis.md`: main project analysis document.
+- `analysis.md`: IBC base-template analysis record. This file remains because `inputs/ibc_presentation_title` is the template-library source.
+- `customization.md`: recommended optional name for future project-specific customization records. New projects based on this IBC template should use `customization.md` instead of `analysis.md` unless they introduce a new PPTX template.
 - `development/analysis-data/`: extracted layout data and supporting analysis files.
 - `development/prototype/`: HTML template prototype and prototype assets.
 - `development/scripts/`: local project generation scripts.
@@ -68,6 +79,9 @@ Current library contents:
 - Closing page.
 - Browser controls with fullscreen, previous/next, slide counter, and a larger semi-transparent left-side slide preview navigator that supports mouse-hover slide switching outside fullscreen mode. The preview navigator can be collapsed with a small top-left toggle.
 - Agenda chapter numbers and chapter titles are clickable links. Number and title links for the same chapter highlight as one group, and generated chapter content should use anchors such as `#chapter-1`, `#chapter-2`, and so on.
+- Final project generators should repeat the selected agenda layout before each chapter section. The agenda before Chapter 1 highlights Chapter 1, the agenda before Chapter 2 highlights Chapter 2, and so on.
+- Each repeated final-project agenda page should carry `data-chapter="<current-chapter-number>"` so the deck controller can synchronize agenda highlight from the active slide.
+- Agenda hover/focus overrides the current chapter highlight while active: only the hovered or focused chapter number/title pair is green; all other chapter pairs are inactive until hover/focus leaves.
 - Subtitle tabs default to subtitle 1 and support hover/focus/click active-state switching during HTML review. Subtitle 1.2 through 1.9 route automatically to the smallest preview page that can display the selected tab unless a real semantic target already exists.
 - For final project HTML, generate real jump targets: chapter slides use `id="chapter-<n>"`, subtitle slides use `id="chapter-<n>-subtitle-<m>"`, and the deck controller switches slides internally without page reload.
 

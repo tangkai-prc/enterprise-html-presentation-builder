@@ -1,6 +1,10 @@
 ---
 project_id: ibc_presentation_title
 template_id: IBC_template
+template_base: IBC_presentation_template_library
+template_source: inputs/ibc_presentation_title
+template_role: base_template_library
+requires_project_pptx: false
 language: en
 title: IBC Presentation Title
 subtitle:
@@ -35,6 +39,8 @@ The template library includes browser playback controls: previous/next, fullscre
 
 Agenda chapter numbers and chapter titles are clickable links. Number and title links for the same chapter highlight as one group, and chapter content slides should use anchors such as `#chapter-1`, `#chapter-2`, and so on.
 
+Final project output should preserve agenda checkpoint pages before each chapter. A project generator should copy the selected agenda layout once per chapter: the agenda page before Chapter 1 highlights Chapter 1, the agenda page before Chapter 2 highlights Chapter 2, and so on.
+
 Subtitle tabs default to subtitle 1 and support hover, focus, and click active-state switching during HTML review. Subtitle 1.2 through 1.9 route automatically to the smallest preview page that can display the selected tab unless a real semantic target already exists.
 
 ## Actual Jump Rules
@@ -42,6 +48,10 @@ Subtitle tabs default to subtitle 1 and support hover, focus, and click active-s
 Final project HTML should use semantic slide targets, not only the template-library preview fallback:
 
 - Agenda links target `#chapter-<chapter-number>`.
+- Final project output repeats the selected agenda layout before each chapter section.
+- Each repeated agenda page uses `data-chapter="<current-chapter-number>"`.
+- The active agenda number/title omit the inactive style; all non-active agenda items use the inactive style.
+- Mouse hover and keyboard focus on an agenda chapter pair temporarily override the active chapter highlight. Only the hovered/focused chapter pair should be green; all other pairs should be inactive grey until hover/focus leaves.
 - The first slide of each chapter uses `id="chapter-<chapter-number>"` and `data-chapter="<chapter-number>"`.
 - Subtitle links target `#chapter-<chapter-number>-subtitle-<subtitle-number>`.
 - Each subtitle content slide uses `id="chapter-<chapter-number>-subtitle-<subtitle-number>"`, `data-chapter="<chapter-number>"`, and `data-active-subtitle-index="<subtitle-number>"`.
@@ -52,7 +62,7 @@ Final project HTML should use semantic slide targets, not only the template-libr
 
 ## Template Selection
 
-Later project-specific generators should select the agenda layout from `language` and `chapters.length`.
+Later project-specific generators should select the agenda layout from `language` and `chapters.length`, then repeat that selected layout once per chapter checkpoint.
 
 | Language | Chapter Count | Selected Layout |
 | --- | ---: | --- |

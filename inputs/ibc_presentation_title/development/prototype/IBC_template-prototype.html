@@ -810,6 +810,7 @@
     let current = 0;
     let currentChapter = '1';
     let currentSubtitle = '1';
+    let hoveredAgendaChapter = null;
     function fitSlides() {
       const scale = stage.clientWidth / 1280;
       document.querySelectorAll('#stage > .slide > .slide-inner').forEach(el => el.style.transform = `scale(${scale})`);
@@ -922,18 +923,21 @@
       return true;
     }
     function setAgendaPairHover(chapter, active) {
-      document.querySelectorAll(`[data-chapter-link="${chapter}"]`).forEach(link => {
-        link.classList.toggle('agenda-pair-hover', active);
-      });
+      hoveredAgendaChapter = active ? chapter : (hoveredAgendaChapter === chapter ? null : hoveredAgendaChapter);
+      syncAgendaLinks();
     }
     function clearAgendaPairHover() {
-      document.querySelectorAll('[data-chapter-link]').forEach(link => link.classList.remove('agenda-pair-hover'));
+      hoveredAgendaChapter = null;
+      document.querySelectorAll('#stage [data-chapter-link]').forEach(link => link.classList.remove('agenda-pair-hover'));
     }
     function syncAgendaLinks() {
-      document.querySelectorAll('[data-chapter-link]').forEach(link => {
-        const isCurrent = link.dataset.chapterLink === currentChapter;
-        link.classList.toggle('agenda-current', isCurrent);
-        link.classList.toggle('inactive', !isCurrent);
+      const activeChapter = hoveredAgendaChapter || currentChapter;
+      document.querySelectorAll('#stage [data-chapter-link]').forEach(link => {
+        const isActive = link.dataset.chapterLink === activeChapter;
+        const isHovered = hoveredAgendaChapter && link.dataset.chapterLink === hoveredAgendaChapter;
+        link.classList.toggle('agenda-current', isActive && !hoveredAgendaChapter);
+        link.classList.toggle('agenda-pair-hover', Boolean(isHovered));
+        link.classList.toggle('inactive', !isActive);
       });
     }
     function chapterTarget(chapter, hash) {

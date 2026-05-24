@@ -5,7 +5,7 @@ Use this file for user-facing presentation generation requests.
 Save a copy as:
 
 ```text
-input/projects/<project-id>/brief.md
+inputs/<project-id>/materials/project.md
 ```
 
 ## Minimal Frontmatter
@@ -13,7 +13,9 @@ input/projects/<project-id>/brief.md
 ```yaml
 ---
 project_id:
-template_id: IBC_template
+template_base: IBC_presentation_template_library
+template_source: inputs/ibc_presentation_title
+requires_project_pptx: false
 language: zh
 title:
 subtitle:
@@ -53,5 +55,10 @@ After the frontmatter, provide slide content grouped by chapter.
 
 - `language` controls Chinese or English template selection.
 - `chapters.length` controls the agenda variant.
-- The generated HTML should be written to `outputs/presentations/<project-id>/`.
-- Do not write user-facing generated HTML to `outputs/prototypes/`.
+- IBC-style final project outputs should repeat the selected agenda variant before each chapter section and highlight the chapter that follows.
+- `template_source` defaults to `inputs/ibc_presentation_title` for IBC-style projects.
+- A project-specific `template/template.pptx` is not required unless `requires_project_pptx: true`.
+- Put project-specific layout decisions and review notes in `inputs/<project-id>/customization.md`.
+- If `customization.md` is absent, use `inputs/ibc_presentation_title` as the default IBC base-template reference.
+- The generated HTML should be written to `outputs/<project-id>/`.
+- Do not write user-facing generated HTML to prototype folders.

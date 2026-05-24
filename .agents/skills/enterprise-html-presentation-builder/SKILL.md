@@ -135,9 +135,13 @@ npm install reveal.js vite
 
 7. For user-facing presentation generation, separate the application layer from prototype work:
    - Read project inputs from `inputs/<project-id>/`.
-   - Use `inputs/<project-id>/materials/brief.md` as the primary user input when present.
+   - Use `inputs/<project-id>/materials/project.md` as the primary user input.
+   - Treat older `inputs/<project-id>/materials/brief.md` files as compatibility inputs only.
    - Use `inputs/<project-id>/template/` for user-provided PPTX templates and visual references.
-   - Use `inputs/<project-id>/analysis.md` as the project analysis record.
+   - Use `inputs/<project-id>/customization.md` as the project-specific customization and generation decision record.
+   - If `customization.md` is absent, use `inputs/ibc_presentation_title` as the default IBC base-template reference.
+   - Reserve `analysis.md` for template analysis records or legacy template-library projects.
+   - For IBC-style projects, default `template_source` to `inputs/ibc_presentation_title` and do not require a project PPTX unless `requires_project_pptx: true`.
    - Use analyzed template rules and prototype layouts as reusable references.
    - Write generated presentation HTML to `outputs/<project-id>/`.
    - Do not write user-facing presentation HTML to `inputs/<project-id>/development/prototype/`.
@@ -145,6 +149,10 @@ npm install reveal.js vite
 
 8. For agenda and subtitle navigation in a single-file HTML deck:
    - Use semantic anchors rather than page-scroll-only links.
+   - For IBC-style final project output, repeat the selected agenda layout before each chapter section instead of keeping only one agenda page at the beginning.
+   - Each repeated agenda slide should carry `data-chapter="<current-chapter-number>"` so the deck controller can highlight the current chapter when that agenda page is shown.
+   - On each repeated agenda slide, the current chapter number and title should be active, while non-current chapters use the inactive agenda style.
+   - Agenda hover/focus state takes precedence over the active slide state: when the mouse or focus is on one chapter number/title pair, only that chapter pair is highlighted and all other chapter pairs use the inactive style; when hover/focus leaves, restore the active slide's chapter highlight.
    - Chapter links should target `#chapter-<chapter-number>`.
    - The first content slide of a chapter should carry `id="chapter-<chapter-number>"` and `data-chapter="<chapter-number>"`.
    - Subtitle links should target `#chapter-<chapter-number>-subtitle-<subtitle-number>`.
