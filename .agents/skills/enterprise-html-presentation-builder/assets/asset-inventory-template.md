@@ -3,7 +3,7 @@
 <!--
 规则作用：
 本文件用于建立企业浏览器演示项目的素材清单模板，记录 Logo、背景、装饰元素、产品图、项目照片、图标、图表、地图、截图和交互演示所需资产的来源、权限、文件路径、放置位置和交付状态。
-它不是最终演示内容，而是 Codex 在分析 PPT 模板、生成单文件 HTML、reveal.js 页面或交互演示前必须维护的资产登记表。
+它不是最终演示内容，而是 Codex 在分析 PPT 模板、生成 Reveal.js 单文件 HTML 或交互演示前必须维护的资产登记表。
 Codex 使用本文件时，应优先使用用户提供或企业官方素材，不得默认使用随机网络图片；任何缺失、未授权或仅作为占位的素材，都必须明确标记为信息缺口或交付风险。
 -->
 
@@ -13,7 +13,7 @@ Codex 使用本文件时，应优先使用用户提供或企业官方素材，�
 
 Track all visual and data assets required for an enterprise-style browser presentation.
 
-This template is used to keep asset sourcing, permission status, placement, and delivery readiness explicit before Codex generates final HTML, reveal.js slides, or interactive demo pages.
+This template is used to keep asset sourcing, permission status, placement, and delivery readiness explicit before Codex generates Reveal.js HTML slides or interactive demo pages.
 
 The goal is to prevent uncontrolled use of images, logos, icons, charts, screenshots, and other visual materials.
 
@@ -22,8 +22,8 @@ The goal is to prevent uncontrolled use of images, logos, icons, charts, screens
 Use this template when:
 
 - An enterprise PPT template is being analyzed.
-- A single-file HTML prototype is being generated.
-- A reveal.js project is being generated.
+- A single-file Reveal.js HTML prototype is being generated.
+- A Reveal.js HTML plus asset-folder project is being generated.
 - A browser-based interactive demo is being added.
 - The presentation uses corporate logo, images, icons, charts, maps, screenshots, or decorative visuals.
 
@@ -36,7 +36,7 @@ Do not skip the asset inventory for client-facing or externally shared materials
 - Source PPT template:
 - Inventory owner:
 - Last updated:
-- Delivery mode: single-file HTML / HTML + assets folder / reveal.js / PDF / PPTX fallback
+- Delivery mode: single-file Reveal.js HTML / Reveal.js HTML + assets folder / PDF / PPTX fallback
 - Client-facing use: Yes / No / Not confirmed
 - Offline requirement: Yes / No / Not confirmed
 

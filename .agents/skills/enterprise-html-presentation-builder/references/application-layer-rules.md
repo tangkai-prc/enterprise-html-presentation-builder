@@ -14,7 +14,7 @@ inputs/ibc_presentation_title
 
 New projects based on this IBC template library usually do not need their own `template/template.pptx`.
 
-If `inputs/<project-id>/customization.md` does not exist, assume the project uses `inputs/ibc_presentation_title` as its base template reference and apply the already-developed IBC cover, agenda, body, subtitle-body, closing, preview navigation, and jump rules.
+If `inputs/<project-id>/customization.md` does not exist, assume the project uses `inputs/ibc_presentation_title` as its base template reference and apply the already-developed IBC cover, agenda, body, subtitle-body, closing, Reveal.js navigation, and jump rules.
 
 ## Directory Roles
 
@@ -86,6 +86,8 @@ Use `customization.md` for project-specific generation decisions that should not
 
 - Template source: `inputs/ibc_presentation_title`
 - Uses project PPTX: no
+- Presentation runtime: Reveal.js
+- Reveal.js root: use the confirmed workspace default
 - Agenda variant: English 4-chapter
 - Chapter 1 body layout: subtitle body
 - Chapter 2 body layout: no-subtitle body
@@ -117,6 +119,8 @@ Example:
 outputs/ibc_demo_en_4chapters/IBC_demo_en_4chapters.html
 ```
 
+Package user-facing output as a self-contained Reveal.js HTML file. A development prototype may reference the confirmed local Reveal.js distribution, but final output must embed the runtime and contain no machine-specific dependency path.
+
 ## Template Selection
 
 For agenda pages, select by language and chapter count:
@@ -142,7 +146,7 @@ Rules:
 - Each repeated agenda slide should include `data-chapter="<current-chapter-number>"`.
 - The agenda number and title for the active chapter should omit the inactive style. All other agenda items should carry the inactive style.
 - During mouse hover or keyboard focus on an agenda chapter number/title pair, that hovered/focused chapter becomes the only highlighted pair; all other agenda chapter pairs, including the slide's current chapter, should be inactive until hover/focus leaves.
-- Agenda links still target `#chapter-<n>` and should be intercepted by the deck controller so jumping does not reload the page or use native scrolling.
+- Agenda links should target Reveal.js named routes such as `#/chapter-<n>`, and the target slide should use `id="chapter-<n>"`. Prefer native hash routing; if custom behavior is required, navigate with `Reveal.getIndices()` and `Reveal.slide()` instead of native scrolling or a parallel slide controller.
 
 ## Prototype vs Presentation
 
@@ -150,3 +154,4 @@ Rules:
 - User-facing presentation files should be named by project, audience, language, or chapter count.
 - Do not overwrite the prototype when generating a user presentation.
 - Do not store generated user presentations in `inputs/<project-id>/development/prototype/`.
+- Do not leave local Reveal.js file references in generated user presentations.

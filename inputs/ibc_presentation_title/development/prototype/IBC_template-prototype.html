@@ -248,16 +248,23 @@
     }
     .content-main {
       position: absolute;
-      left: 88px;
-      top: 191.67px;
-      width: 1104px;
-      height: 456.83px;
-      padding: 2px 18px 0 18px;
+      left: 54px;
+      top: 94px;
+      right: 58px;
+      bottom: 46px;
+      width: auto;
+      height: auto;
+      padding: 0;
       z-index: 4;
     }
     .subtitle-layout .content-main {
+      left: 88px;
       top: 181.87px;
+      right: auto;
+      bottom: auto;
+      width: 1104px;
       height: 470px;
+      padding: 2px 18px 0 18px;
     }
     .subtitle-layout .logo {
       z-index: 1;
@@ -330,6 +337,16 @@
       font-weight: 700;
     }
     .content-copy li { margin: 0 0 8px; }
+    .content-slide:not(.subtitle-layout) .content-copy h3 {
+      margin-bottom: 14px;
+      font-size: 37px;
+      line-height: 1.08;
+      color: #016F67;
+    }
+    .content-slide:not(.subtitle-layout) .content-copy ul {
+      font-size: 25px;
+      line-height: 1.34;
+    }
     .content-wave {
       position: absolute;
       left: 0;
@@ -818,6 +835,13 @@
     function formatSlideType(value) {
       return String(value || 'slide').replace(/^agenda-/, '').replace(/-/g, ' ');
     }
+    function getPreviewCaption(slide, index) {
+      if (slide.dataset.navCaption) return slide.dataset.navCaption;
+      const title = slide.querySelector('.source-copy h3, .content-copy h3, .content-title, .closing-text h1, .cover-title')?.textContent?.replace(/\s+/g, ' ').trim();
+      if (slide.dataset.chapter && title) return `第${slide.dataset.chapter}章 - ${title}`;
+      if (title) return title;
+      return `${index + 1}. ${formatSlideType(slide.dataset.slideType)}`;
+    }
     function buildPreviewNav() {
       previewNav.innerHTML = '';
       previewButtons = slides.map((slide, index) => {
@@ -825,12 +849,13 @@
         const frame = document.createElement('span');
         const caption = document.createElement('span');
         const clone = slide.querySelector('.slide-inner').cloneNode(true);
+        const previewCaption = getPreviewCaption(slide, index);
         button.type = 'button';
         button.className = 'preview-thumb';
-        button.title = `Go to slide ${index + 1}: ${formatSlideType(slide.dataset.slideType)}`;
+        button.title = `Go to slide ${index + 1}: ${previewCaption}`;
         frame.className = 'preview-frame';
         caption.className = 'preview-caption';
-        caption.textContent = `${index + 1}. ${formatSlideType(slide.dataset.slideType)}`;
+        caption.textContent = `${index + 1}. ${previewCaption}`;
         clone.removeAttribute('style');
         clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
         clone.querySelectorAll('a').forEach(link => {

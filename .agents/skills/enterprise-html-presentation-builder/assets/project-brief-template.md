@@ -16,6 +16,8 @@ project_id:
 template_base: IBC_presentation_template_library
 template_source: inputs/ibc_presentation_title
 requires_project_pptx: false
+runtime: revealjs
+delivery_mode: single-file-html
 language: zh
 title:
 subtitle:
@@ -54,6 +56,8 @@ After the frontmatter, provide slide content grouped by chapter.
 ## Generation Rules
 
 - `language` controls Chinese or English template selection.
+- `runtime` defaults to `revealjs` for HTML presentations.
+- `delivery_mode` defaults to `single-file-html`; final output must embed the Reveal.js runtime and required assets.
 - `chapters.length` controls the agenda variant.
 - IBC-style final project outputs should repeat the selected agenda variant before each chapter section and highlight the chapter that follows.
 - `template_source` defaults to `inputs/ibc_presentation_title` for IBC-style projects.
@@ -61,4 +65,5 @@ After the frontmatter, provide slide content grouped by chapter.
 - Put project-specific layout decisions and review notes in `inputs/<project-id>/customization.md`.
 - If `customization.md` is absent, use `inputs/ibc_presentation_title` as the default IBC base-template reference.
 - The generated HTML should be written to `outputs/<project-id>/`.
+- The generated HTML must not depend on a machine-specific Reveal.js path.
 - Do not write user-facing generated HTML to prototype folders.

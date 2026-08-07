@@ -1,7 +1,7 @@
 ﻿<!--
 规则作用：
 本文件用于记录和沉淀企业 PPT 模板中的视觉风格变量，包括 Logo、品牌色、字体、字号、留白、页眉页脚、装饰元素和组件样式。
-它不是最终 HTML 产物，而是后续生成单文件 HTML、reveal.js 项目或交互演示页面时的企业视觉规范输入。
+它不是最终 HTML 产物，而是后续生成 Reveal.js 单文件 HTML 或交互演示页面时的企业视觉规范输入。
 Codex 使用本文件时，应先区分“已确认 style tokens”“推测 style tokens”“缺失 style tokens”和“需品牌确认的 tokens”，不得把从 PPT 视觉估算出的草案值直接当作最终品牌规范。
 -->
 
@@ -21,7 +21,7 @@ Use this template when:
 
 - An enterprise PPT template is available.
 - A browser presentation should follow corporate visual identity.
-- The user wants single-file HTML or reveal.js output with enterprise style.
+- The user wants enterprise-style Reveal.js output, including strict single-file delivery.
 - The exact visual style needs to be documented before generating HTML.
 
 Do not treat draft tokens as final brand rules unless the user confirms them.
@@ -95,7 +95,7 @@ Use official brand colors when available. If values are extracted from the PPT v
   --brand-accent: ;
   --brand-bg: ;
   --brand-surface: ;
-  --brand-text: ;
+  --brand-text: #016F67;
   --brand-muted: ;
   --brand-line: ;
   --brand-success: ;
@@ -113,18 +113,19 @@ Use official brand colors when available. If values are extracted from the PPT v
 | --brand-accent |  | PPT / brand guide / user | confirmed / draft / missing | Highlights and emphasis |
 | --brand-bg |  | PPT / brand guide / user | confirmed / draft / missing | Slide background |
 | --brand-surface |  | PPT / brand guide / user | confirmed / draft / missing | Cards and panels |
-| --brand-text |  | PPT / brand guide / user | confirmed / draft / missing | Main text |
+| --brand-text | #016F67 | skill default / user override | confirmed default | Main text on light and neutral backgrounds |
 | --brand-muted |  | PPT / brand guide / user | confirmed / draft / missing | Secondary text |
 | --brand-line |  | PPT / brand guide / user | confirmed / draft / missing | Borders and dividers |
 
 ## Typography tokens
 
-Use system font fallbacks unless proprietary fonts are confirmed and available.
+Use the skill defaults below unless the user or project explicitly confirms a replacement. Use system font fallbacks and do not require remote fonts.
 
 ```css
 :root {
-  --font-cn: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
-  --font-en: Arial, Helvetica, sans-serif;
+  --font-cn: "Microsoft YaHei", "微软雅黑", sans-serif;
+  --font-en: Arial, sans-serif;
+  --font-ui: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 ```
@@ -135,6 +136,7 @@ Use system font fallbacks unless proprietary fonts are confirmed and available.
 |---|---|---|---|---|
 | --font-cn |  | PPT / brand guide / fallback | confirmed / draft / missing | Chinese text |
 | --font-en |  | PPT / brand guide / fallback | confirmed / draft / missing | English text |
+| --font-ui | Arial, "Microsoft YaHei", "微软雅黑", sans-serif | skill default / user override | confirmed default | Mixed Chinese and English browser text |
 | --font-mono |  | system fallback | confirmed / draft / missing | Code or technical labels |
 
 ### Font size tokens
@@ -345,13 +347,14 @@ When style tokens are ready, Codex may produce a final CSS token block in this f
   --brand-accent: ;
   --brand-bg: ;
   --brand-surface: ;
-  --brand-text: ;
+  --brand-text: #016F67;
   --brand-muted: ;
   --brand-line: ;
 
   /* Typography */
-  --font-cn: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
-  --font-en: Arial, Helvetica, sans-serif;
+  --font-cn: "Microsoft YaHei", "微软雅黑", sans-serif;
+  --font-en: Arial, sans-serif;
+  --font-ui: Arial, "Microsoft YaHei", "微软雅黑", sans-serif;
   --font-cover-title: ;
   --font-slide-title: ;
   --font-body: ;

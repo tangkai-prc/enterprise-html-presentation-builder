@@ -37,6 +37,15 @@ Only one HTML should be generated at this stage: `IBC_presentation_template_libr
 
 The template library includes browser playback controls: previous/next, fullscreen with `F`, slide counter, and a semi-transparent left-side preview navigator for manual review. Outside fullscreen mode, hovering a preview item switches to that slide, and a small top-left toggle can collapse or restore the preview navigator; fullscreen mode hides it.
 
+Preview navigation captions should describe the slide content instead of only showing the technical slide type. Project generators should set `data-nav-caption` on each `<section class="slide">`; the deck controller uses this value below the preview thumbnail and in the preview button title. Recommended captions are:
+
+- Cover: `封面 - <presentation-title>`.
+- Agenda checkpoint: `目录 - 第<chapter-number>章 <chapter-title>`.
+- Body slide: `第<chapter-number>章 - <slide-title>`.
+- Closing: `尾页 - <closing-title-or-slogan>`.
+
+If `data-nav-caption` is absent, the preview navigator may fall back to the visible slide title, then to the technical `data-slide-type`.
+
 Agenda chapter numbers and chapter titles are clickable links. Number and title links for the same chapter highlight as one group, and chapter content slides should use anchors such as `#chapter-1`, `#chapter-2`, and so on.
 
 Final project output should preserve agenda checkpoint pages before each chapter. A project generator should copy the selected agenda layout once per chapter: the agenda page before Chapter 1 highlights Chapter 1, the agenda page before Chapter 2 highlights Chapter 2, and so on.
@@ -113,6 +122,9 @@ agenda-en-4-layout3
 - Use the first `###` heading as the body title.
 - Use bullet list items as the body copy.
 - Use the master body placeholder as the single content area.
+- Maximize the title-body page body area globally: the content work area should start below the horizontal baseline of the chapter-mark icon and corporate logo, and should extend down to just above the footer/page-number row.
+- For the default 1280 x 720 canvas, use the title-body body-area reference bounds `left: 54px`, `top: 94px`, `right: 58px`, `bottom: 46px`; project-specific image/text grids may subdivide this area but should not shrink the overall work area.
+- Keep subtitle-body layouts separate: subtitle pages may preserve their tab band and own content bounds instead of inheriting the title-body maximized body area.
 - Do not include a chapter navigation band or a right-side visual placeholder on this layout.
 - Body pages include footer page numbers.
 

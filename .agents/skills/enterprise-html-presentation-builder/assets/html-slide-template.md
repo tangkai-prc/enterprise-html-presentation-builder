@@ -1,7 +1,7 @@
 ﻿<!--
 规则作用：
 本文件用于沉淀企业浏览器演示的 HTML 幻灯片模板片段，包括封面页、目录页、章节页、内容页、双栏页、图文页、数据页、交互演示页和结束页。
-它不是最终 HTML 产物，而是 Codex 生成单文件 HTML、reveal.js 页面或交互演示页面时可复用的结构模板。
+它不是最终 HTML 产物，而是 Codex 生成基于 Reveal.js 的单文件 HTML 或交互演示页面时可复用的结构模板。
 Codex 使用本文件时，应根据 layout-taxonomy.md、style-token-template.md、asset-sourcing-rules.md 和 asset-placement-rules.md 选择合适页面类型，并保持 Logo、页眉页脚、页码、图片位置和企业视觉风格一致。
 -->
 
@@ -11,7 +11,7 @@ Codex 使用本文件时，应根据 layout-taxonomy.md、style-token-template.m
 
 Provide reusable HTML slide structure patterns for enterprise-style browser presentations.
 
-This file is used as an asset template. Codex may copy, adapt, or combine these patterns when generating a single-file HTML prototype, reveal.js slide markup, or browser-based interactive presentation.
+This file is used as an asset template. Codex may copy, adapt, or combine these patterns when generating Reveal.js slide markup, a single-file HTML prototype, or a browser-based interactive presentation.
 
 The goal is to keep generated slides consistent, inspectable, and aligned with the enterprise template rules.
 
@@ -31,8 +31,55 @@ Always combine this file with:
 
 - `references/layout-taxonomy.md`
 - `references/single-file-html-rules.md`
+- `references/revealjs-development-rules.md`
+- `references/revealjs-presentation-shell-rules.md` when preview navigation or fullscreen controls are required
 - `references/asset-placement-rules.md`
 - `assets/style-token-template.md`
+
+## Reveal.js document shell
+
+Use Reveal.js as the default runtime. Final single-file output should follow this order:
+
+```html
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Presentation Title</title>
+
+    <!-- reveal.js 6.0.1, MIT License -->
+    <style>
+      /* BUILD: inline dist/reset.css */
+      /* BUILD: inline dist/reveal.css */
+      /* BUILD: inline enterprise theme and slide CSS */
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- BUILD: insert Reveal.js slide sections here -->
+      </div>
+    </div>
+
+    <!-- BUILD: insert the shell from assets/revealjs-presentation-shell.md -->
+
+    <script>
+      /* BUILD: inline dist/reveal.js UMD distribution */
+    </script>
+    <script>
+      /* BUILD: inline selected UMD plugins, if any */
+    </script>
+    <script>
+      /* BUILD: initialize Reveal.js, then presentation-specific behavior */
+    </script>
+  </body>
+</html>
+```
+
+Replace every `BUILD` marker during delivery. Do not leave external Reveal.js paths, CDN links, or unresolved asset references in final HTML.
+
+For a normal user-facing deck, insert the reusable shell after `.reveal`. The shell provides a fixed left-side thumbnail preview rail that is expanded by default and can be collapsed, plus previous, counter, next, and new-tab Play controls. The playback tab requests fullscreen and exposes a one-click fallback when browser policy blocks automatic fullscreen. Omit the shell only for an explicitly requested minimal, embedded, kiosk, or print mode.
 
 ## Global slide shell
 
@@ -61,7 +108,9 @@ All slides should use a common shell where possible.
 Rules:
 
 - Use `<section class="slide ...">` for each slide.
+- Place every horizontal slide directly under `.reveal > .slides`.
 - Use `data-slide-type` to make slide type explicit.
+- Let Reveal.js control slide visibility; do not add or toggle a custom `active` class.
 - Keep brand logo placement consistent.
 - Keep footer structure consistent.
 - Use layout-specific classes for slide bodies.
@@ -75,7 +124,7 @@ Purpose:
 Opening page for the presentation.
 
 ```html
-<section class="slide cover active" data-slide-type="cover">
+<section class="slide cover" data-slide-type="cover">
   <div class="brand-logo cover-logo" aria-label="Corporate logo">LOGO</div>
 
   <div class="cover-decoration" aria-hidden="true"></div>
@@ -313,11 +362,13 @@ Combine visual material and explanation.
 </section>
 ```
 
-When final image is available, replace placeholder with:
+In a development prototype, a confirmed local image may be referenced as:
 
 ```html
 <img class="slide-image" src="assets/project-photo-01.png" alt="Project photo description" />
 ```
+
+For strict single-file delivery, replace the path with an embedded data URL or inline SVG.
 
 Rules:
 
@@ -450,52 +501,52 @@ Rules:
 - Logo may be more prominent than normal slides.
 - Do not introduce new technical content on the closing page.
 
-## Minimal navigation script pattern
+## Reveal.js initialization pattern
 
-For single-file HTML MVP, Codex may use this pattern:
+Use Reveal.js for navigation, scaling, keyboard input, touch, overview, and lifecycle state:
 
 ```html
 <script>
-  const slides = Array.from(document.querySelectorAll(".slide"));
-  let current = 0;
-
-  function showSlide(index) {
-    current = Math.max(0, Math.min(index, slides.length - 1));
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === current);
-    });
+  function syncPresentationState(event) {
+    const currentSlide = event.currentSlide || Reveal.getCurrentSlide();
+    document.documentElement.dataset.currentChapter = currentSlide?.dataset.chapter || "";
   }
 
-  function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen?.();
-    } else {
-      document.exitFullscreen?.();
-    }
-  }
+  Reveal.on("ready", syncPresentationState);
+  Reveal.on("slidechanged", syncPresentationState);
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
-      showSlide(current + 1);
-    }
-
-    if (event.key === "ArrowLeft" || event.key === "PageUp") {
-      showSlide(current - 1);
-    }
-
-    if (event.key.toLowerCase() === "f") {
-      toggleFullscreen();
-    }
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2,
+    center: false,
+    controls: false, // custom shell supplies visible controls
+    progress: true,
+    slideNumber: false,
+    hash: true,
+    history: false,
+    keyboard: true,
+    touch: true,
+    overview: true,
+    transition: "none",
+    backgroundTransition: "none",
+    plugins: []
   });
 </script>
 ```
 
 Rules:
 
-- Use this script only for simple MVP navigation.
-- Do not add external routing libraries.
-- Do not add framework dependencies in MVP.
-- Keep the script inspectable.
+- Keep chapter and subtitle target IDs stable.
+- Use named routes such as `<a href="#/chapter-1">...</a>` for semantic navigation.
+- Use `Reveal.getIndices()` and `Reveal.slide()` only when native named routing is insufficient.
+- Do not create a parallel slide index or duplicate Reveal.js keyboard handlers.
+- Add plugins only when required and available offline.
+- Keep presentation-specific behavior inspectable.
+- Install the reusable shell only after Reveal.js is ready; see `assets/revealjs-presentation-shell.md`.
+- If the custom shell is omitted, restore `controls: true` in the baseline configuration.
 
 ## Minimal CSS structure reminder
 
@@ -514,8 +565,10 @@ A generated HTML prototype should define CSS variables and layout classes such a
   --brand-accent: ;
 }
 
-.slide {}
-.slide.active {}
+.reveal {}
+.reveal .slides {}
+.reveal .slides > section.slide {}
+.reveal .slides > section.present {}
 .brand-logo {}
 .slide-header {}
 .slide-body {}
@@ -565,5 +618,8 @@ Before generating final HTML from these templates, confirm:
 - Placeholders are clearly labeled.
 - Image placeholders preserve layout space.
 - Interactive slide has fallback explanation.
-- No external dependencies are introduced by template snippets.
+- Reveal.js owns navigation and slide visibility.
+- The fixed left preview rail, collapse control, playback controls, and fullscreen playback state are synchronized from Reveal.js state when the user-facing shell is enabled.
+- Final output embeds Reveal.js and introduces no required external request.
+- Final output contains no machine-specific Reveal.js or asset path.
 - Final generated slide follows layout taxonomy and asset placement rules.

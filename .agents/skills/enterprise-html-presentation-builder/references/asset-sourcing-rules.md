@@ -419,9 +419,9 @@ Avoid:
 
 If many real images are required, recommend:
 
-- HTML plus asset folder.
+- Reveal.js HTML plus an asset folder.
 - Or a packaged zip.
-- Or a reveal.js/Vite project mode.
+- Or an explicitly approved application build when presentation interaction exceeds the Reveal.js runtime.
 
 ## Output format when using this reference
 

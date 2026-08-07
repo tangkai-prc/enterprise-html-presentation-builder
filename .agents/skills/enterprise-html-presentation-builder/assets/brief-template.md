@@ -6,7 +6,7 @@
 
 Collect the minimum information needed to generate or analyze an enterprise-style browser presentation.
 
-This template should be used before generating any HTML prototype, reveal.js project, or interactive demo.
+This template should be used before generating any Reveal.js HTML prototype, presentation, or interactive demo.
 
 The goal is to make the user's requirements explicit, prevent uncontrolled assumptions, and keep the presentation workflow reusable.
 
@@ -66,12 +66,12 @@ Audience notes:
 
 ## Delivery format
 
-Choose the target output:
+Choose the target output. Reveal.js is the default runtime for HTML options:
 
-- Single-file HTML
-- HTML plus asset folder
-- reveal.js project
-- React/Vite project
+- Single-file Reveal.js HTML
+- Reveal.js HTML plus asset folder
+- Reveal.js development project
+- React/Vite application, only when explicitly required
 - PDF export
 - Screenshot-based PPTX fallback
 - Native PPTX is required
@@ -79,7 +79,8 @@ Choose the target output:
 
 Default for MVP:
 
-- Single-file HTML
+- Reveal.js runtime
+- Single-file HTML delivery
 - Offline browser playback
 - No external CDN
 - No dependency installation
@@ -268,7 +269,7 @@ Use the asset sourcing and placement rules when filling this section.
 - Must be single-file HTML: Yes / No / Not confirmed
 - Can use external CDN: Yes / No / Not confirmed
 - Can install dependencies: Yes / No / Not confirmed
-- Can use reveal.js: Yes / No / Not confirmed
+- Reveal.js version / source:
 - Can use React/Vite: Yes / No / Not confirmed
 
 ### Delivery constraints
@@ -309,9 +310,9 @@ Choose one:
 - Extract style tokens first
 - Define layout taxonomy first
 - Define asset rules first
-- Generate single-file HTML prototype
+- Generate Reveal.js single-file HTML prototype
 - Add interactive demo page
-- Switch to reveal.js project mode
+- Switch to Reveal.js HTML plus asset folder when strict single-file delivery is impractical
 - Request missing materials before proceeding
 
 ## Output expectation
