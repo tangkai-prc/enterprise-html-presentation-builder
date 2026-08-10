@@ -1,0 +1,2494 @@
+{
+  "template": "input/templates/IBC_template.pptx",
+  "canvas": {
+    "ppt_emu": {
+      "cx": 12192000,
+      "cy": 6858000
+    },
+    "html_px": {
+      "w": 1280,
+      "h": 720
+    },
+    "scale_note": "PPT size is 16:9; EMU positions are converted using 96 px/inch, equivalent to 1280x720 for this template."
+  },
+  "pages": [
+    {
+      "label": "page_1_agenda_zh",
+      "user_page_index": 1,
+      "slide_part": "ppt/slides/slide2.xml",
+      "layout_part": "ppt/slideLayouts/slideLayout2.xml",
+      "master_part": "ppt/slideMasters/slideMaster1.xml",
+      "objects": [
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "标题占位符 1",
+          "placeholder": {
+            "type": "title"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 38.33,
+            "w": 1104.0,
+            "h": 139.17,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版标题样式",
+          "runs": [
+            {
+              "text": "单击此处编辑母版标题样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "文本占位符 2",
+          "placeholder": {
+            "type": "body",
+            "idx": "1"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 191.67,
+            "w": 1104.0,
+            "h": 456.83,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版文本样式二级三级四级五级",
+          "runs": [
+            {
+              "text": "单击此处编辑母版文本样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "二级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "三级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "四级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "五级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "日期占位符 3",
+          "placeholder": {
+            "type": "dt",
+            "sz": "half",
+            "idx": "2"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 667.33,
+            "w": 288.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "页脚占位符 4",
+          "placeholder": {
+            "type": "ftr",
+            "sz": "quarter",
+            "idx": "3"
+          },
+          "position_px": {
+            "x": 424.0,
+            "y": 667.33,
+            "w": 432.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "灯片编号占位符 5",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "4"
+          },
+          "position_px": {
+            "x": 904.0,
+            "y": 667.33,
+            "w": 288.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "picture",
+          "name": "图片 6",
+          "position_px": {
+            "x": 921.7,
+            "y": -3.65,
+            "w": 358.3,
+            "h": 83.97,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId39",
+          "target": "ppt/media/image1.png"
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "日期占位符 1",
+          "placeholder": {
+            "type": "dt",
+            "sz": "half",
+            "idx": "10"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "页脚占位符 2",
+          "placeholder": {
+            "type": "ftr",
+            "sz": "quarter",
+            "idx": "11"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "灯片编号占位符 3",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "12"
+          },
+          "position_px": null,
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 177",
+          "placeholder": null,
+          "position_px": {
+            "x": 177.23,
+            "y": 238.89,
+            "w": 62.14,
+            "h": 242.22,
+            "rotation_deg": 0
+          },
+          "text": "CONTENTS",
+          "runs": [
+            {
+              "text": "CONTENTS",
+              "font_size_pt": 28.0,
+              "font_face": "微软雅黑",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": "eaVert",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 12.8,
+              "rIns": 12.8,
+              "tIns": 6.4,
+              "bIns": 6.4
+            }
+          },
+          "fill": "none",
+          "line": {
+            "color": null,
+            "width_px": null
+          }
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 177",
+          "placeholder": null,
+          "position_px": {
+            "x": 65.53,
+            "y": 177.43,
+            "w": 75.67,
+            "h": 365.13,
+            "rotation_deg": 0
+          },
+          "text": "目录",
+          "runs": [
+            {
+              "text": "目录",
+              "font_size_pt": 48.0,
+              "font_face": "微软雅黑",
+              "font_bold": true,
+              "color": "#00706B"
+            }
+          ],
+          "body": {
+            "vertical_text": "eaVert",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 12.8,
+              "rIns": 12.8,
+              "tIns": 6.4,
+              "bIns": 6.4
+            }
+          },
+          "fill": "none",
+          "line": {
+            "color": null,
+            "width_px": null
+          }
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 112.27,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "1",
+          "runs": [
+            {
+              "text": "1",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 247.33,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "2",
+          "runs": [
+            {
+              "text": "2",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 382.4,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "3",
+          "runs": [
+            {
+              "text": "3",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 517.47,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "4",
+          "runs": [
+            {
+              "text": "4",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 12",
+          "placeholder": {
+            "idx": "17",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 138.1,
+            "w": 753.93,
+            "h": 38.67,
+            "rotation_deg": 0
+          },
+          "text": "第一章",
+          "runs": [
+            {
+              "text": "第一",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            },
+            {
+              "text": "章",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 25",
+          "placeholder": {
+            "idx": "18",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 274.8,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 2",
+          "runs": [
+            {
+              "text": "Chapter 2",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 16",
+          "placeholder": {
+            "idx": "19",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 408.0,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 3",
+          "runs": [
+            {
+              "text": "Chapter 3",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 27",
+          "placeholder": {
+            "idx": "20",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 543.07,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 4",
+          "runs": [
+            {
+              "text": "Chapter 4",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "picture",
+          "name": "图片 4",
+          "position_px": {
+            "x": 0.62,
+            "y": 208.87,
+            "w": 1279.38,
+            "h": 206.12,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId7",
+          "target": "ppt/media/image4.png"
+        },
+        {
+          "source": "layout",
+          "kind": "connector",
+          "name": "直接连接符 61",
+          "position_px": {
+            "x": 261.87,
+            "y": 113.83,
+            "w": 0.0,
+            "h": 492.35,
+            "rotation_deg": 0
+          },
+          "line": {
+            "color": "#00706B",
+            "width_px": 3.0
+          }
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 2",
+          "placeholder": {
+            "idx": "17"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 3",
+          "placeholder": {
+            "idx": "18"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 4",
+          "placeholder": {
+            "idx": "19"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 5",
+          "placeholder": {
+            "idx": "20"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        }
+      ],
+      "agenda_focus": [
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "标题占位符 1",
+          "placeholder": {
+            "type": "title"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 38.33,
+            "w": 1104.0,
+            "h": 139.17,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版标题样式",
+          "runs": [
+            {
+              "text": "单击此处编辑母版标题样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "文本占位符 2",
+          "placeholder": {
+            "type": "body",
+            "idx": "1"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 191.67,
+            "w": 1104.0,
+            "h": 456.83,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版文本样式二级三级四级五级",
+          "runs": [
+            {
+              "text": "单击此处编辑母版文本样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "二级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "三级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "四级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "五级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "灯片编号占位符 5",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "4"
+          },
+          "position_px": {
+            "x": 904.0,
+            "y": 667.33,
+            "w": 288.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "picture",
+          "name": "图片 6",
+          "position_px": {
+            "x": 921.7,
+            "y": -3.65,
+            "w": 358.3,
+            "h": 83.97,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId39",
+          "target": "ppt/media/image1.png"
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "灯片编号占位符 3",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "12"
+          },
+          "position_px": null,
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 177",
+          "placeholder": null,
+          "position_px": {
+            "x": 177.23,
+            "y": 238.89,
+            "w": 62.14,
+            "h": 242.22,
+            "rotation_deg": 0
+          },
+          "text": "CONTENTS",
+          "runs": [
+            {
+              "text": "CONTENTS",
+              "font_size_pt": 28.0,
+              "font_face": "微软雅黑",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": "eaVert",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 12.8,
+              "rIns": 12.8,
+              "tIns": 6.4,
+              "bIns": 6.4
+            }
+          },
+          "fill": "none",
+          "line": {
+            "color": null,
+            "width_px": null
+          }
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 177",
+          "placeholder": null,
+          "position_px": {
+            "x": 65.53,
+            "y": 177.43,
+            "w": 75.67,
+            "h": 365.13,
+            "rotation_deg": 0
+          },
+          "text": "目录",
+          "runs": [
+            {
+              "text": "目录",
+              "font_size_pt": 48.0,
+              "font_face": "微软雅黑",
+              "font_bold": true,
+              "color": "#00706B"
+            }
+          ],
+          "body": {
+            "vertical_text": "eaVert",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 12.8,
+              "rIns": 12.8,
+              "tIns": 6.4,
+              "bIns": 6.4
+            }
+          },
+          "fill": "none",
+          "line": {
+            "color": null,
+            "width_px": null
+          }
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 112.27,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "1",
+          "runs": [
+            {
+              "text": "1",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 247.33,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "2",
+          "runs": [
+            {
+              "text": "2",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 382.4,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "3",
+          "runs": [
+            {
+              "text": "3",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 517.47,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "4",
+          "runs": [
+            {
+              "text": "4",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 12",
+          "placeholder": {
+            "idx": "17",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 138.1,
+            "w": 753.93,
+            "h": 38.67,
+            "rotation_deg": 0
+          },
+          "text": "第一章",
+          "runs": [
+            {
+              "text": "第一",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            },
+            {
+              "text": "章",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 25",
+          "placeholder": {
+            "idx": "18",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 274.8,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 2",
+          "runs": [
+            {
+              "text": "Chapter 2",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 16",
+          "placeholder": {
+            "idx": "19",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 408.0,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 3",
+          "runs": [
+            {
+              "text": "Chapter 3",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 27",
+          "placeholder": {
+            "idx": "20",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 543.07,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 4",
+          "runs": [
+            {
+              "text": "Chapter 4",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "picture",
+          "name": "图片 4",
+          "position_px": {
+            "x": 0.62,
+            "y": 208.87,
+            "w": 1279.38,
+            "h": 206.12,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId7",
+          "target": "ppt/media/image4.png"
+        }
+      ]
+    },
+    {
+      "label": "page_2_agenda_en",
+      "user_page_index": 2,
+      "slide_part": "ppt/slides/slide3.xml",
+      "layout_part": "ppt/slideLayouts/slideLayout3.xml",
+      "master_part": "ppt/slideMasters/slideMaster1.xml",
+      "objects": [
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "标题占位符 1",
+          "placeholder": {
+            "type": "title"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 38.33,
+            "w": 1104.0,
+            "h": 139.17,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版标题样式",
+          "runs": [
+            {
+              "text": "单击此处编辑母版标题样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "文本占位符 2",
+          "placeholder": {
+            "type": "body",
+            "idx": "1"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 191.67,
+            "w": 1104.0,
+            "h": 456.83,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版文本样式二级三级四级五级",
+          "runs": [
+            {
+              "text": "单击此处编辑母版文本样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "二级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "三级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "四级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "五级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "日期占位符 3",
+          "placeholder": {
+            "type": "dt",
+            "sz": "half",
+            "idx": "2"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 667.33,
+            "w": 288.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "页脚占位符 4",
+          "placeholder": {
+            "type": "ftr",
+            "sz": "quarter",
+            "idx": "3"
+          },
+          "position_px": {
+            "x": 424.0,
+            "y": 667.33,
+            "w": 432.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "灯片编号占位符 5",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "4"
+          },
+          "position_px": {
+            "x": 904.0,
+            "y": 667.33,
+            "w": 288.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "picture",
+          "name": "图片 6",
+          "position_px": {
+            "x": 921.7,
+            "y": -3.65,
+            "w": 358.3,
+            "h": 83.97,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId39",
+          "target": "ppt/media/image1.png"
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "日期占位符 1",
+          "placeholder": {
+            "type": "dt",
+            "sz": "half",
+            "idx": "10"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "页脚占位符 2",
+          "placeholder": {
+            "type": "ftr",
+            "sz": "quarter",
+            "idx": "11"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "灯片编号占位符 3",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "12"
+          },
+          "position_px": null,
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 177",
+          "placeholder": null,
+          "position_px": {
+            "x": 109.07,
+            "y": 144.76,
+            "w": 75.66,
+            "h": 430.48,
+            "rotation_deg": 0
+          },
+          "text": "CONTENTS",
+          "runs": [
+            {
+              "text": "CONTENTS",
+              "font_size_pt": 44.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#00706B"
+            }
+          ],
+          "body": {
+            "vertical_text": "eaVert",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 12.8,
+              "rIns": 12.8,
+              "tIns": 6.4,
+              "bIns": 6.4
+            }
+          },
+          "fill": "none",
+          "line": {
+            "color": null,
+            "width_px": null
+          }
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 112.27,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "1",
+          "runs": [
+            {
+              "text": "1",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 247.33,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "2",
+          "runs": [
+            {
+              "text": "2",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 382.4,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "3",
+          "runs": [
+            {
+              "text": "3",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 517.47,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "4",
+          "runs": [
+            {
+              "text": "4",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 22",
+          "placeholder": {
+            "idx": "17",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 138.1,
+            "w": 753.93,
+            "h": 38.67,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 1",
+          "runs": [
+            {
+              "text": "Chapter",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            },
+            {
+              "text": " ",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            },
+            {
+              "text": "1",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 25",
+          "placeholder": {
+            "idx": "18",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 274.8,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 2",
+          "runs": [
+            {
+              "text": "Chapter 2",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 26",
+          "placeholder": {
+            "idx": "19",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 408.0,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 3",
+          "runs": [
+            {
+              "text": "Chapter 3",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 27",
+          "placeholder": {
+            "idx": "20",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 543.07,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 4",
+          "runs": [
+            {
+              "text": "Chapter 4",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "picture",
+          "name": "图片 4",
+          "position_px": {
+            "x": 0.0,
+            "y": 201.26,
+            "w": 1279.38,
+            "h": 206.12,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId6",
+          "target": "ppt/media/image4.png"
+        },
+        {
+          "source": "layout",
+          "kind": "connector",
+          "name": "直接连接符 61",
+          "position_px": {
+            "x": 261.87,
+            "y": 113.83,
+            "w": 0.0,
+            "h": 492.35,
+            "rotation_deg": 0
+          },
+          "line": {
+            "color": "#00706B",
+            "width_px": 3.0
+          }
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 2",
+          "placeholder": {
+            "idx": "17"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 3",
+          "placeholder": {
+            "idx": "18"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 4",
+          "placeholder": {
+            "idx": "19"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "slide",
+          "kind": "shape",
+          "name": "内容占位符 5",
+          "placeholder": {
+            "idx": "20"
+          },
+          "position_px": null,
+          "text": "",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        }
+      ],
+      "agenda_focus": [
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "标题占位符 1",
+          "placeholder": {
+            "type": "title"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 38.33,
+            "w": 1104.0,
+            "h": 139.17,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版标题样式",
+          "runs": [
+            {
+              "text": "单击此处编辑母版标题样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "文本占位符 2",
+          "placeholder": {
+            "type": "body",
+            "idx": "1"
+          },
+          "position_px": {
+            "x": 88.0,
+            "y": 191.67,
+            "w": 1104.0,
+            "h": 456.83,
+            "rotation_deg": 0
+          },
+          "text": "单击此处编辑母版文本样式二级三级四级五级",
+          "runs": [
+            {
+              "text": "单击此处编辑母版文本样式",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "二级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "三级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "四级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            },
+            {
+              "text": "五级",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "shape",
+          "name": "灯片编号占位符 5",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "4"
+          },
+          "position_px": {
+            "x": 904.0,
+            "y": 667.33,
+            "w": 288.0,
+            "h": 38.33,
+            "rotation_deg": 0
+          },
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": "horz",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 9.6,
+              "rIns": 9.6,
+              "tIns": 4.8,
+              "bIns": 4.8
+            }
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "master",
+          "kind": "picture",
+          "name": "图片 6",
+          "position_px": {
+            "x": 921.7,
+            "y": -3.65,
+            "w": 358.3,
+            "h": 83.97,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId39",
+          "target": "ppt/media/image1.png"
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "灯片编号占位符 3",
+          "placeholder": {
+            "type": "sldNum",
+            "sz": "quarter",
+            "idx": "12"
+          },
+          "position_px": null,
+          "text": "‹#›",
+          "runs": [],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 177",
+          "placeholder": null,
+          "position_px": {
+            "x": 109.07,
+            "y": 144.76,
+            "w": 75.66,
+            "h": 430.48,
+            "rotation_deg": 0
+          },
+          "text": "CONTENTS",
+          "runs": [
+            {
+              "text": "CONTENTS",
+              "font_size_pt": 44.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#00706B"
+            }
+          ],
+          "body": {
+            "vertical_text": "eaVert",
+            "anchor": "ctr",
+            "wrap": null,
+            "margins_px": {
+              "lIns": 12.8,
+              "rIns": 12.8,
+              "tIns": 6.4,
+              "bIns": 6.4
+            }
+          },
+          "fill": "none",
+          "line": {
+            "color": null,
+            "width_px": null
+          }
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 112.27,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "1",
+          "runs": [
+            {
+              "text": "1",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 247.33,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "2",
+          "runs": [
+            {
+              "text": "2",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 382.4,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "3",
+          "runs": [
+            {
+              "text": "3",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "文本框 6",
+          "placeholder": null,
+          "position_px": {
+            "x": 295.93,
+            "y": 517.47,
+            "w": 64.27,
+            "h": 90.33,
+            "rotation_deg": 0
+          },
+          "text": "4",
+          "runs": [
+            {
+              "text": "4",
+              "font_size_pt": 50.0,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "scheme:bg1"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": "square",
+            "margins_px": {}
+          },
+          "fill": "none",
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 22",
+          "placeholder": {
+            "idx": "17",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 138.1,
+            "w": 753.93,
+            "h": 38.67,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 1",
+          "runs": [
+            {
+              "text": "Chapter",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            },
+            {
+              "text": " ",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            },
+            {
+              "text": "1",
+              "font_size_pt": null,
+              "font_face": "Arial Black",
+              "font_bold": true,
+              "color": "#016F67"
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 25",
+          "placeholder": {
+            "idx": "18",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 274.8,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 2",
+          "runs": [
+            {
+              "text": "Chapter 2",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 26",
+          "placeholder": {
+            "idx": "19",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 408.0,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 3",
+          "runs": [
+            {
+              "text": "Chapter 3",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "shape",
+          "name": "内容占位符 27",
+          "placeholder": {
+            "idx": "20",
+            "hasCustomPrompt": "1"
+          },
+          "position_px": {
+            "x": 375.4,
+            "y": 543.07,
+            "w": 766.67,
+            "h": 39.13,
+            "rotation_deg": 0
+          },
+          "text": "Chapter 4",
+          "runs": [
+            {
+              "text": "Chapter 4",
+              "font_size_pt": null,
+              "font_face": null,
+              "font_bold": null,
+              "color": null
+            }
+          ],
+          "body": {
+            "vertical_text": null,
+            "anchor": null,
+            "wrap": null,
+            "margins_px": {}
+          },
+          "fill": null,
+          "line": null
+        },
+        {
+          "source": "layout",
+          "kind": "picture",
+          "name": "图片 4",
+          "position_px": {
+            "x": 0.0,
+            "y": 201.26,
+            "w": 1279.38,
+            "h": 206.12,
+            "rotation_deg": 0
+          },
+          "relationship_id": "rId6",
+          "target": "ppt/media/image4.png"
+        }
+      ]
+    }
+  ]
+}

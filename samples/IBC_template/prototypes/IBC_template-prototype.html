@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IBC Template Prototype</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #101817;
+      font-family: Arial, "Microsoft YaHei", sans-serif;
+    }
+    .deck { position: fixed; inset: 0; display: grid; place-items: center; }
+    .stage {
+      position: relative;
+      width: min(100vw, calc(100vh * 16 / 9));
+      height: min(100vh, calc(100vw * 9 / 16));
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 18px 60px rgba(0,0,0,.38);
+    }
+    .slide { position: absolute; inset: 0; display: none; overflow: hidden; background: #fff; }
+    .slide.active { display: block; }
+    .slide-inner { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; transform-origin: top left; }
+    .logo {
+      position: absolute;
+      left: 921.7px;
+      top: -3.65px;
+      width: 358.3px;
+      height: 83.97px;
+      background: url("IBC_template_assets/image1.png") center / 100% 100% no-repeat;
+      z-index: 8;
+    }
+    .deep-bg {
+      position: absolute;
+      left: 0;
+      top: 184.8px;
+      width: 1280px;
+      height: 298.1px;
+      background: url("IBC_template_assets/image2.jpeg") center / 100% 100% no-repeat;
+    }
+    .light-bg {
+      position: absolute;
+      left: 0;
+      top: 536.07px;
+      width: 1278.8px;
+      height: 183.93px;
+      background: url("IBC_template_assets/image3.png") center / 100% 100% no-repeat;
+    }
+    .cover-title {
+      position: absolute;
+      left: 0;
+      top: 193.67px;
+      width: 1280px;
+      height: 166.33px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 48px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-align: center;
+      z-index: 3;
+    }
+    .cover-org {
+      position: absolute;
+      left: 0;
+      top: 526px;
+      width: 1280px;
+      color: #00706B;
+      font-family: Arial, sans-serif;
+      font-size: 19px;
+      line-height: 1.25;
+      font-weight: bold;
+      text-align: center;
+      z-index: 4;
+    }
+    .cover-org time { display: block; margin-top: 6px; }
+    .agenda-bg {
+      position: absolute;
+      left: 0.62px;
+      top: 208.87px;
+      width: 1279.38px;
+      height: 206.12px;
+      background: url("IBC_template_assets/image4.png") center / 100% 100% no-repeat;
+    }
+    .agenda-bg.en { left: 0; top: 201.26px; }
+    .agenda-contents {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      color: #00706B;
+      font-weight: 900;
+      letter-spacing: 0;
+      z-index: 3;
+    }
+    .agenda-contents.zh {
+      left: 177.23px;
+      top: 238.89px;
+      width: 62.14px;
+      height: 242.22px;
+      color: #A6A6A6;
+      font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+      font-size: 37.33px;
+    }
+    .agenda-contents.en {
+      left: 109.07px;
+      top: 144.76px;
+      width: 75.66px;
+      height: 430.48px;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 44px;
+    }
+    .agenda-title-zh {
+      position: absolute;
+      left: 65.53px;
+      top: 177.43px;
+      width: 75.67px;
+      height: 365.13px;
+      color: #00706B;
+      font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 900;
+      text-shadow: .65px 0 0 currentColor, -.35px 0 0 currentColor, 0 .65px 0 currentColor, 0 -.35px 0 currentColor, .45px .45px 0 currentColor;
+      z-index: 3;
+    }
+    .agenda-title-zh span {
+      position: absolute;
+      left: 0;
+      width: 75.67px;
+      text-align: center;
+      font-weight: 900;
+    }
+    .agenda-title-zh .zh-top { top: 0; }
+    .agenda-title-zh .zh-bottom { bottom: 0; }
+    .agenda-line {
+      position: absolute;
+      left: 261.87px;
+      top: 113.83px;
+      width: 3px;
+      height: 492.35px;
+      background: #00706B;
+      z-index: 3;
+    }
+    .agenda-num {
+      position: absolute;
+      width: 64.27px;
+      height: 90.33px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #016F67;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 50px;
+      line-height: 1;
+      font-weight: 900;
+      z-index: 4;
+    }
+    .agenda-text {
+      position: absolute;
+      width: 766.67px;
+      height: 39.13px;
+      display: flex;
+      align-items: center;
+      color: #016F67;
+      font-family: "Arial Black", Arial, "Microsoft YaHei", sans-serif;
+      font-size: 28px;
+      line-height: 1.15;
+      font-weight: 900;
+      z-index: 4;
+    }
+    .agenda-num.inactive,
+    .agenda-text.inactive { color: #7F7F7F; font-weight: 900; }
+    .n1 { left: 295.93px; top: 112.27px; } .n2 { left: 295.93px; top: 247.33px; } .n3 { left: 295.93px; top: 382.4px; } .n4 { left: 295.93px; top: 517.47px; }
+    .t1 { left: 375.4px; top: 138.1px; width: 753.93px; height: 38.67px; } .t2 { left: 375.4px; top: 274.8px; } .t3 { left: 375.4px; top: 408px; } .t4 { left: 375.4px; top: 543.07px; }
+    .agenda-2 .n1 { top: 220px; } .agenda-2 .n2 { top: 410px; }
+    .agenda-2 .t1 { top: 245.83px; } .agenda-2 .t2 { top: 435.83px; }
+    .agenda-3 .n1 { top: 157px; } .agenda-3 .n2 { top: 315px; } .agenda-3 .n3 { top: 473px; }
+    .agenda-3 .t1 { top: 182.83px; } .agenda-3 .t2 { top: 340.83px; } .agenda-3 .t3 { top: 498.83px; }
+    .agenda-5 .n1 { top: 87px; } .agenda-5 .n2 { top: 194px; } .agenda-5 .n3 { top: 301px; } .agenda-5 .n4 { top: 408px; } .agenda-5 .n5 { left: 295.93px; top: 515px; }
+    .agenda-5 .t1 { top: 112.83px; } .agenda-5 .t2 { top: 219.83px; } .agenda-5 .t3 { top: 326.83px; } .agenda-5 .t4 { top: 433.83px; } .agenda-5 .t5 { left: 375.4px; top: 540.83px; }
+    .closing-text { position: absolute; left: 0; top: 288px; width: 1280px; text-align: center; color: #fff; z-index: 5; }
+    .closing-text h1 { margin: 0; font: bold 46px/1.2 Arial, sans-serif; }
+    .closing-text p { margin: 16px 0 0; font: bold 24px/1.2 Arial, sans-serif; }
+    .wind { position: absolute; left: 0; top: 368px; width: 180px; z-index: 6; }
+    .tower { position: absolute; right: 0; top: 377px; width: 130px; z-index: 6; }
+    .controls { position: fixed; right: 18px; bottom: 18px; z-index: 40; display: flex; gap: 8px; align-items: center; }
+    .controls button, .counter { min-width: 38px; height: 38px; border: 1px solid rgba(255,255,255,.28); border-radius: 6px; color: #fff; background: rgba(0,0,0,.52); font: bold 14px Arial, sans-serif; }
+    .counter { min-width: 58px; display: grid; place-items: center; }
+  </style>
+</head>
+<body>
+  <div class="deck">
+    <div class="stage" id="stage">
+      <section class="slide active" data-slide-type="cover">
+        <div class="slide-inner">
+          <div class="logo" aria-label="State Grid / NARI logo"></div>
+          <div class="deep-bg"></div><div class="light-bg"></div>
+          <h1 class="cover-title">IBC Presentation Title</h1>
+          <div class="cover-org">State Grid Electric Power Research Institute / NARI Group Corporation<time id="cover-date"></time></div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-zh-2-layout2">
+        <div class="slide-inner agenda-2">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
+          <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div>
+          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-zh-3-layout2">
+        <div class="slide-inner agenda-3">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
+          <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div>
+          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div><div class="agenda-text t3 inactive">第三章</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-zh-4-layout2">
+        <div class="slide-inner">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
+          <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div>
+          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div><div class="agenda-text t3 inactive">第三章</div><div class="agenda-text t4 inactive">第四章</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-zh-5-layout2">
+        <div class="slide-inner agenda-5">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg zh"></div>
+          <div class="agenda-title-zh"><span class="zh-top">目</span><span class="zh-bottom">录</span></div><div class="agenda-contents zh">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div><div class="agenda-num n5 inactive">5</div>
+          <div class="agenda-text t1">第一章</div><div class="agenda-text t2 inactive">第二章</div><div class="agenda-text t3 inactive">第三章</div><div class="agenda-text t4 inactive">第四章</div><div class="agenda-text t5 inactive">第五章</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-en-2-layout3">
+        <div class="slide-inner agenda-2">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
+          <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div>
+          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-en-3-layout3">
+        <div class="slide-inner agenda-3">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
+          <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div>
+          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div><div class="agenda-text t3 inactive">Chapter 3</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-en-4-layout3">
+        <div class="slide-inner">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
+          <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div>
+          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div><div class="agenda-text t3 inactive">Chapter 3</div><div class="agenda-text t4 inactive">Chapter 4</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="agenda-en-5-layout3">
+        <div class="slide-inner agenda-5">
+          <div class="logo" aria-label="State Grid / NARI logo"></div><div class="agenda-bg en"></div>
+          <div class="agenda-contents en">CONTENTS</div><div class="agenda-line"></div>
+          <div class="agenda-num n1">1</div><div class="agenda-num n2 inactive">2</div><div class="agenda-num n3 inactive">3</div><div class="agenda-num n4 inactive">4</div><div class="agenda-num n5 inactive">5</div>
+          <div class="agenda-text t1">Chapter 1</div><div class="agenda-text t2 inactive">Chapter 2</div><div class="agenda-text t3 inactive">Chapter 3</div><div class="agenda-text t4 inactive">Chapter 4</div><div class="agenda-text t5 inactive">Chapter 5</div>
+        </div>
+      </section>
+
+      <section class="slide" data-slide-type="closing">
+        <div class="slide-inner">
+          <div class="deep-bg"></div><div class="light-bg"></div>
+          <img class="wind" src="IBC_template_assets/image5.png" alt="">
+          <img class="tower" src="IBC_template_assets/image6.png" alt="">
+          <main class="closing-text"><h1>Leading the Innovation for a better Grid</h1><p>http://www.narigroup.com</p></main>
+        </div>
+      </section>
+    </div>
+  </div>
+  <nav class="controls"><button id="prev" type="button">‹</button><div class="counter" id="counter">1/10</div><button id="next" type="button">›</button><button id="full" type="button">□</button></nav>
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const stage = document.getElementById('stage');
+    const counter = document.getElementById('counter');
+    let current = 0;
+    function fitSlides() {
+      const scale = stage.clientWidth / 1280;
+      document.querySelectorAll('.slide-inner').forEach(el => el.style.transform = `scale(${scale})`);
+    }
+    function show(i) {
+      current = Math.max(0, Math.min(slides.length - 1, i));
+      slides.forEach((s, idx) => s.classList.toggle('active', idx === current));
+      counter.textContent = `${current + 1}/${slides.length}`;
+    }
+    function updateCoverDate() {
+      const target = document.getElementById('cover-date');
+      const parts = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }).formatToParts(new Date());
+      const data = Object.fromEntries(parts.map(p => [p.type, p.value]));
+      target.textContent = `${data.day} ${data.month} ${data.year}`;
+    }
+    document.getElementById('prev').onclick = () => show(current - 1);
+    document.getElementById('next').onclick = () => show(current + 1);
+    document.getElementById('full').onclick = () => document.fullscreenElement ? document.exitFullscreen?.() : document.documentElement.requestFullscreen?.();
+    window.addEventListener('keydown', e => {
+      if (['ArrowRight', 'PageDown', ' '].includes(e.key)) show(current + 1);
+      if (['ArrowLeft', 'PageUp'].includes(e.key)) show(current - 1);
+      if (e.key.toLowerCase() === 'f') document.getElementById('full').click();
+    });
+    window.addEventListener('resize', fitSlides);
+    updateCoverDate(); fitSlides(); show(0);
+  </script>
+</body>
+</html>

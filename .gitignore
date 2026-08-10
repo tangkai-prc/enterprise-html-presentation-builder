@@ -13,6 +13,10 @@ input/
 
 inputs/
 
+# Local PowerPoint master files
+/template/
+samples/IBC_template/templates/*.pptx
+
 *.log
 
 .env
