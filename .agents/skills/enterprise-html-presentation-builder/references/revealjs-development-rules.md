@@ -188,6 +188,8 @@ Use `dist/reveal.js`, not `dist/reveal.mjs`, for direct single-file inlining unl
 Before handoff, verify that:
 
 - The DOM contains exactly one `.reveal > .slides` shell.
+- PPTX-derived slides use a master-rule layer plus editable HTML objects and do not embed rendered full-slide screenshots unless explicitly approved.
+- PPTX-derived edit mode exposes the expected `contenteditable="true"` text objects, while playback mode and preview clones expose none.
 - Reveal.js initializes without console errors.
 - Arrow keys, touch, overview, fullscreen, progress, and hash navigation work as required.
 - Thumbnail previews are sanitized, clickable, synchronized with the current Reveal.js slide, and do not contain duplicate IDs or editable controls.

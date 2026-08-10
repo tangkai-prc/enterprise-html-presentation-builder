@@ -2,7 +2,7 @@
 规则作用：
 本文件用于沉淀企业浏览器演示的 HTML 幻灯片模板片段，包括封面页、目录页、章节页、内容页、双栏页、图文页、数据页、交互演示页和结束页。
 它不是最终 HTML 产物，而是 Codex 生成基于 Reveal.js 的单文件 HTML 或交互演示页面时可复用的结构模板。
-Codex 使用本文件时，应根据 layout-taxonomy.md、style-token-template.md、asset-sourcing-rules.md 和 asset-placement-rules.md 选择合适页面类型，并保持 Logo、页眉页脚、页码、图片位置和企业视觉风格一致。
+Codex 使用本文件时，应根据 layout-taxonomy.md、master-rules-editable-objects.md、style-token-template.md、asset-sourcing-rules.md 和 asset-placement-rules.md 选择合适页面类型，并保持 Logo、页眉页脚、页码、图片位置和企业视觉风格一致。
 -->
 
 # HTML Slide Template Patterns
@@ -30,6 +30,7 @@ Do not use this file to claim exact PPTX-to-HTML conversion.
 Always combine this file with:
 
 - `references/layout-taxonomy.md`
+- `references/master-rules-editable-objects.md` when final HTML is derived from a PPTX or applies a PPTX template
 - `references/single-file-html-rules.md`
 - `references/revealjs-development-rules.md`
 - `references/revealjs-presentation-shell-rules.md` when preview navigation or fullscreen controls are required
@@ -116,6 +117,63 @@ Rules:
 - Use layout-specific classes for slide bodies.
 - Avoid inline styles unless a one-off prototype requires them.
 - Use placeholders when final assets are missing.
+
+## PPTX-derived editable object shell
+
+When final HTML is derived from a content PPTX or applies a PPTX template, use a separate master-rule layer and editable-object layer:
+
+```html
+<section
+  class="slide content ppt-rebuilt"
+  data-slide-type="content"
+  data-source-slide="3"
+  data-template-layout="content-standard"
+>
+  <div class="template-layer" aria-hidden="true">
+    <div class="template-background" data-template-role="master-background"></div>
+    <div class="template-decoration" data-template-role="master-decoration"></div>
+  </div>
+
+  <div class="brand-logo" data-template-role="master-logo" role="img" aria-label="Corporate logo"></div>
+
+  <main class="ppt-content-layer">
+    <div
+      class="ppt-object ppt-text"
+      data-source-aid="sh/example-title"
+      data-object-type="text"
+    >
+      <div
+        class="ppt-text-body"
+        contenteditable="true"
+        spellcheck="false"
+        data-editable-text="true"
+      >
+        Editable slide title
+      </div>
+    </div>
+
+    <figure
+      class="ppt-object ppt-image-frame"
+      data-source-aid="im/example-photo"
+      data-object-type="image"
+    >
+      <img src="data:image/png;base64,..." alt="Independent source image" />
+    </figure>
+  </main>
+
+  <div class="page-number" data-template-role="master-page-number">3</div>
+</section>
+```
+
+Rules:
+
+- Generate shared master markup from one template function or reusable fragment.
+- Keep source text, shapes, lines, and images as separate positioned objects.
+- Keep `data-source-slide`, stable source-object IDs, object type, template layout, and template-role metadata where available.
+- Do not use a rendered full-slide image inside `.ppt-content-layer` or as a shortcut slide background.
+- Allow only original template-owned decorative background assets that contain no rasterized slide text or slide-specific content.
+- Disable `contenteditable` in playback mode and remove it from preview clones.
+- Use an isolated raster fallback only for one unsupported complex object and record that deviation.
 
 ## Cover slide
 
@@ -623,3 +681,6 @@ Before generating final HTML from these templates, confirm:
 - Final output embeds Reveal.js and introduces no required external request.
 - Final output contains no machine-specific Reveal.js or asset path.
 - Final generated slide follows layout taxonomy and asset placement rules.
+- PPTX-derived final output separates master rules from editable HTML objects.
+- PPTX-derived final output contains no rendered full-slide screenshot unless explicitly approved.
+- Normal mode exposes the expected editable text objects; playback mode and preview clones expose none.

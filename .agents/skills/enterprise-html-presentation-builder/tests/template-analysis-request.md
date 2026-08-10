@@ -167,15 +167,14 @@ Should include:
 Use one of:
 
 - Extract style only.
-- Use slide images as background.
-- Rebuild layouts in HTML/CSS.
-- Hybrid approach.
+- Rebuild with master rules plus editable HTML objects.
+- Use a hybrid object approach with isolated raster fallbacks only.
 - Not suitable for HTML template.
 
 For this skill MVP, the recommended strategy should normally be:
 
 - Extract style first.
-- Rebuild reusable layouts in HTML/CSS.
+- Rebuild reusable master rules and editable HTML object layouts.
 - Use placeholders for missing assets.
 - Generate single-file HTML prototype only in a later step.
 

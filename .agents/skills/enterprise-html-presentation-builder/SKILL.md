@@ -1,6 +1,7 @@
 ---
 name: enterprise-html-presentation-builder
-description: Build reusable Reveal.js-first workflows for enterprise-style browser presentations from PowerPoint templates, corporate visual styles, and user briefs, with offline single-file HTML delivery, a collapsible fixed left-side slide preview rail, and new-tab fullscreen playback. Use when the user wants to develop a Codex skill for HTML presentations, browser-based slides, or AI-generated interactive presentation demos. Do not use when the user only asks for a final PowerPoint file.
+description: >-
+  Build reusable Reveal.js-first workflows for enterprise-style browser presentations from PowerPoint templates, corporate visual styles, and user briefs. Enforce a two-layer model: template/master rules for shared brand layout plus editable HTML objects for slide content, with offline single-file delivery, a collapsible fixed left preview rail, and new-tab fullscreen playback. Use for HTML presentation skills, browser slides, template-applied PPTX-to-HTML work, or interactive presentation demos. Do not use when the user only asks for a final PowerPoint file.
 ---
 
 # Enterprise HTML Presentation Builder
@@ -51,6 +52,26 @@ They usually do not need exact conversion of:
 - Native placeholders.
 - SmartArt internals.
 - Theme object metadata.
+
+## Mandatory construction model: master rules + editable HTML objects
+
+For every user-facing HTML presentation generated from a PowerPoint template or content deck, use this two-layer model unless the user explicitly requests a flattened image-based result:
+
+1. **Master-rule layer**: canvas, background, brand colors, typography tokens, logo, company name, header, footer, page number, title region, safe margins, and shared decoration from the selected template variant.
+2. **Editable-object layer**: slide-owned titles, paragraphs, metrics, cards, tables, charts, shapes, lines, diagrams, and independent images rebuilt as positioned HTML/CSS/SVG objects.
+
+Mandatory constraints:
+
+- Select the template variant by language, color theme, and enterprise identity before building.
+- Treat rendered slide images as analysis and visual-QA references only. Do not embed a rendered full slide as the final content layer or as a shortcut background.
+- Allow an original template-owned background asset only when it contains shared decoration rather than rasterized slide text or slide-specific content.
+- Keep text directly editable in normal mode with `contenteditable="true"`; disable editing in playback mode and in preview clones.
+- Keep photos, maps, banners, covers, and icons as independent image objects with their own crop and placement rules.
+- Rebuild ordinary shapes and connectors with CSS or SVG. If an unsupported complex object must be rasterized, rasterize only that isolated object and record the deviation.
+- When the user says only color, logo, or company identity changes, mutate the master-rule layer only and preserve slide count, order, content, independent assets, and geometry unless explicitly authorized otherwise.
+- Never silently flatten a slide when object reconstruction is incomplete. Report the unsupported object and the smallest acceptable fallback.
+
+Read `references/master-rules-editable-objects.md` for layer ownership, object metadata, reconstruction order, raster exceptions, and acceptance criteria.
 
 ## Runtime and dependency policy
 
@@ -118,6 +139,7 @@ Do not add React, Vite, a CDN, or another presentation framework by default.
    - A compatible Reveal.js distribution is available.
 
 6. For HTML presentation generation, use:
+   - The mandatory master-rule plus editable-object model from `references/master-rules-editable-objects.md`.
    - Reveal.js markup: `.reveal > .slides > section`.
    - Reveal.js for navigation, scaling, keyboard, touch, overview, fragments, and slide lifecycle events.
    - A 1280×720 logical slide size unless the analyzed template requires another 16:9 canvas.
@@ -184,6 +206,7 @@ Do not add React, Vite, a CDN, or another presentation framework by default.
 Use bundled resources only when relevant to the user's request.
 
 - Use `references/ppt-template-analysis-checklist.md` when analyzing an enterprise PPT template or extracting style and layout rules.
+- Use `references/master-rules-editable-objects.md` whenever applying a PPT/PPTX template to final HTML, rebuilding a content deck as editable HTML, or validating that output is not a flattened slide image.
 - Use `references/layout-taxonomy.md` when classifying slide types or choosing HTML slide layouts.
 - Use `references/single-file-html-rules.md` when the target output is a single-file HTML browser presentation.
 - Use `references/revealjs-development-rules.md` whenever generating, modifying, packaging, or debugging a Reveal.js presentation.
@@ -261,9 +284,8 @@ State logo, header, footer, image, chart, screenshot, map, and interactive place
 Use one of:
 
 - Extract style only.
-- Use slide images as background.
-- Rebuild layouts in HTML/CSS.
-- Hybrid approach.
+- Rebuild with master rules plus editable HTML objects.
+- Use a hybrid object approach with isolated raster fallbacks only.
 - Not suitable for HTML template.
 
 ### 下一步动作
@@ -299,6 +321,8 @@ State how the user can verify the current step.
 - Distinguish confirmed information, assumptions, and information gaps.
 - Do not claim perfect PPTX import or exact PPTX-to-HTML conversion.
 - Do not generate final HTML unless the user explicitly asks for it.
+- Default final PPTX-derived HTML to master rules plus editable HTML objects; never use a rendered full slide as a shortcut output layer.
+- Keep slide renders in analysis or QA only, and keep any unavoidable raster fallback scoped to one isolated object with a recorded deviation.
 - Use Reveal.js as the default runtime for HTML presentations and do not replace its navigation with a parallel custom slide controller.
 - For user-facing Reveal.js decks, include an accessible collapsible fixed left preview rail and a new-tab fullscreen Play action by default unless the brief explicitly requests minimal or embedded playback.
 - Keep the local Reveal.js distribution read-only and keep final output independent of its absolute filesystem path.

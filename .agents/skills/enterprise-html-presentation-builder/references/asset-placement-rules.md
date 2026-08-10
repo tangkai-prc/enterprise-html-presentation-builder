@@ -246,6 +246,7 @@ Rules:
 - Ensure text contrast.
 - Add overlay if background is visually busy.
 - Avoid full-slide background images on text-heavy slides unless necessary.
+- Do not use a rendered full-slide screenshot to flatten a content slide. A full-slide asset is acceptable only when it is an original template-owned or source-owned background without rasterized slide text and slide-specific objects.
 - Do not use external image URLs in single-file HTML MVP.
 
 ### Content-page background
